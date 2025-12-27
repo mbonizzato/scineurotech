@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain-Computer Interfaces | sciNeurotech Lab</title>
+  <meta name="description" content="Brain-Computer Interface research at sciNeurotech Lab - creating bidirectional neural interfaces for motor control">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="Logo_Poly_desktop.png" alt="Polytechnique Montréal" class="institution-logo">
+          <div class="lab-title">
+            <span class="lab-name">sciNeurotech Lab</span>
+            <a href="https://www.polymtl.ca/expertises/en/bonizzato-marco" target="_blank" class="lab-pi">Marco Bonizzato</a>
+          </div>
+        </a>
+        <div class="lang-switch">
+          <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+          <button id="btn-fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="nav-menu">
+          <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+          <li class="dropdown">
+            <a href="index.html#research" class="active" data-en="Research" data-fr="Recherche">Research</a>
+            <div class="dropdown-menu">
+              <a href="research-neurostim.html" data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</a>
+              <a href="research-maths.html" data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</a>
+              <a href="research-bci.html" data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</a>
+            </div>
+          </li>
+          <li><a href="publications.html" data-en="Publications" data-fr="Publications">Publications</a></li>
+          <li><a href="people.html" data-en="People" data-fr="Équipe">People</a></li>
+          <li><a href="positions.html" data-en="Positions" data-fr="Postes">Positions</a></li>
+          <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-title">
+        <h1 data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</h1>
+      </div>
+
+      <!-- Pong Game Demo -->
+      <div class="pong-container">
+        <canvas id="pongCanvas" width="600" height="200"></canvas>
+        <p class="pong-instructions" data-en="Use ↑↓ arrow keys to control the left paddle" data-fr="Utilisez les touches ↑↓ pour contrôler la raquette gauche">Use ↑↓ arrow keys to control the left paddle</p>
+      </div>
+
+      <div class="page-content-simple">
+        <div class="research-detail">
+          <h3 data-en="Understanding BCIs" data-fr="Comprendre les ICM">Understanding BCIs</h3>
+          <p data-en="If you played the little game above, you just moved the paddle up and down with your keyboard. Your intention to move, a thought originating in your motor cortex, traveled down your spinal cord, activated muscles in your fingers, pressed the keys, and the paddle responded. A simple action, but from your brain - to your fingers - to the keyboard - to the screen it takes quite a series of abstractions, doesn't it?" data-fr="Si vous avez joué au petit jeu ci-dessus, vous venez de déplacer la raquette de haut en bas avec votre clavier. Votre intention de bouger, une pensée provenant de votre cortex moteur, a voyagé le long de votre moelle épinière, activé les muscles de vos doigts, appuyé sur les touches, et la raquette a répondu. Une action simple, mais de votre cerveau - à vos doigts - au clavier - à l'écran, cela prend toute une série d'abstractions, n'est-ce pas ?">If you played the little game above, you just moved the paddle up and down with your keyboard. Your intention to move, a thought originating in your motor cortex, traveled down your spinal cord, activated muscles in your fingers, pressed the keys, and the paddle responded. A simple action, but from your brain - to your fingers - to the keyboard - to the screen it takes quite a series of abstractions, doesn't it?</p>
+          <p data-en="Now imagine doing the same thing without the keyboard. Without your hand. Without any physical movement at all." data-fr="Maintenant, imaginez faire la même chose sans le clavier. Sans votre main. Sans aucun mouvement physique du tout.">Now imagine doing the same thing without the keyboard. Without your hand. Without any physical movement at all.</p>
+          <p data-en="This is what a brain-computer interface (BCI) does: it creates a direct communication pathway from your brain to an external device. Instead of pressing keys, electrodes implanted in your motor cortex record the electrical activity of neurons as you <em>think</em> about moving. Algorithms decode these neural signals in real-time, extract your intended direction, and move the paddle accordingly. The keyboard and the hand that would operate it become unnecessary." data-fr="C'est ce que fait une interface cerveau-machine (ICM) : elle crée une voie de communication directe de votre cerveau vers un appareil externe. Au lieu d'appuyer sur des touches, des électrodes implantées dans votre cortex moteur enregistrent l'activité électrique des neurones pendant que vous <em>pensez</em> à bouger. Des algorithmes décodent ces signaux neuraux en temps réel, extraient la direction que vous souhaitez et déplacent la raquette en conséquence. Le clavier et la main qui l'actionnerait deviennent inutiles.">This is what a brain-computer interface (BCI) does: it creates a direct communication pathway from your brain to an external device. Instead of pressing keys, electrodes implanted in your motor cortex record the electrical activity of neurons as you <em>think</em> about moving. Algorithms decode these neural signals in real-time, extract your intended direction, and move the paddle accordingly. The keyboard and the hand that would operate it become unnecessary.</p>
+          <p data-en="For someone with paralysis, this technology transforms what's possible. A BCI could in the near future control a robotic arm to grasp a cup, drive a wheelchair through thought alone, or trigger electrical stimulation of paralyzed muscles to restore natural movement. The effector changes - a cursor, a prosthetic, a stimulator - but the principle remains the same: direct neural control." data-fr="Pour une personne atteinte de paralysie, cette technologie transforme ce qui est possible. Une ICM pourrait dans un avenir proche contrôler un bras robotique pour saisir une tasse, conduire un fauteuil roulant par la pensée seule, ou déclencher une stimulation électrique des muscles paralysés pour restaurer le mouvement naturel. L'effecteur change - un curseur, une prothèse, un stimulateur - mais le principe reste le même : le contrôle neural direct.">For someone with paralysis, this technology transforms what's possible. A BCI could in the near future control a robotic arm to grasp a cup, drive a wheelchair through thought alone, or trigger electrical stimulation of paralyzed muscles to restore natural movement. The effector changes - a cursor, a prosthetic, a stimulator - but the principle remains the same: direct neural control.</p>
+
+          <h3 data-en="How the Brain Computes Movement Is A Distributed Story" data-fr="Comment le cerveau calcule le mouvement : une histoire distribuée">How the Brain Computes Movement Is A Distributed Story</h3>
+          <p data-en="When you decide to reach for an object, that decision doesn't originate in a single neuron or even a single brain region. Movement emerges from the coordinated activity of millions of neurons distributed across multiple cortical areas: primary motor cortex, premotor cortex, supplementary motor area, parietal regions. But also from many areas in the depth of your brain. Each contributes something different: planning the trajectory, coordinating the sequence, monitoring proprioception, adjusting for obstacles." data-fr="Lorsque vous décidez d'atteindre un objet, cette décision ne provient pas d'un seul neurone ni même d'une seule région cérébrale. Le mouvement émerge de l'activité coordonnée de millions de neurones distribués à travers plusieurs aires corticales : cortex moteur primaire, cortex prémoteur, aire motrice supplémentaire, régions pariétales. Mais aussi de nombreuses zones dans les profondeurs de votre cerveau. Chacune contribue différemment : planifier la trajectoire, coordonner la séquence, surveiller la proprioception, s'ajuster aux obstacles.">When you decide to reach for an object, that decision doesn't originate in a single neuron or even a single brain region. Movement emerges from the coordinated activity of millions of neurons distributed across multiple cortical areas: primary motor cortex, premotor cortex, supplementary motor area, parietal regions. But also from many areas in the depth of your brain. Each contributes something different: planning the trajectory, coordinating the sequence, monitoring proprioception, adjusting for obstacles.</p>
+          <p data-en="Traditional BCI research has focused heavily on recording from primary motor cortex (M1), treating it as the sole command center for movement. While M1 certainly plays a critical role, this view misses the distributed nature of motor computation." data-fr="La recherche traditionnelle sur les ICM s'est fortement concentrée sur l'enregistrement du cortex moteur primaire (M1), le traitant comme le seul centre de commande du mouvement. Bien que M1 joue certainement un rôle critique, cette vision manque la nature distribuée du calcul moteur.">Traditional BCI research has focused heavily on recording from primary motor cortex (M1), treating it as the sole command center for movement. While M1 certainly plays a critical role, this view misses the distributed nature of motor computation.</p>
+          <p data-en="Our laboratory takes a different approach. We study how motor intentions are represented and processed across multiple cortical regions simultaneously. We can observe how different brain areas cooperate during movement planning and execution. This reveals something fundamental: motor commands aren't simply <em>generated</em> in one place and <em>executed</em> downstream, they're constructed through dynamic interactions across a network." data-fr="Notre laboratoire adopte une approche différente. Nous étudions comment les intentions motrices sont représentées et traitées simultanément dans plusieurs régions corticales. Nous pouvons observer comment différentes zones cérébrales coopèrent pendant la planification et l'exécution du mouvement. Cela révèle quelque chose de fondamental : les commandes motrices ne sont pas simplement <em>générées</em> en un endroit et <em>exécutées</em> en aval, elles sont construites à travers des interactions dynamiques à travers un réseau.">Our laboratory takes a different approach. We study how motor intentions are represented and processed across multiple cortical regions simultaneously. We can observe how different brain areas cooperate during movement planning and execution. This reveals something fundamental: motor commands aren't simply <em>generated</em> in one place and <em>executed</em> downstream, they're constructed through dynamic interactions across a network.</p>
+          <p data-en="This distributed perspective has direct implications for BCI design. If motor computation is inherently multi-regional, then BCIs that record from multiple cortical areas simultaneously might extract richer, more robust control signals than single-region approaches." data-fr="Cette perspective distribuée a des implications directes pour la conception des ICM. Si le calcul moteur est intrinsèquement multi-régional, alors les ICM qui enregistrent simultanément depuis plusieurs aires corticales pourraient extraire des signaux de contrôle plus riches et plus robustes que les approches à région unique.">This distributed perspective has direct implications for BCI design. If motor computation is inherently multi-regional, then BCIs that record from multiple cortical areas simultaneously might extract richer, more robust control signals than single-region approaches.</p>
+
+          <h3 data-en="Natural Commands vs. BCI Commands" data-fr="Commandes naturelles vs commandes ICM">Natural Commands vs. BCI Commands</h3>
+          <p data-en="Here's a curious observation about most BCIs: they work, but they don't work as <em>naturally</em> as we like to believe." data-fr="Voici une observation curieuse concernant la plupart des ICM : elles fonctionnent, mais elles ne fonctionnent pas aussi <em>naturellement</em> que nous aimons le croire.">Here's a curious observation about most BCIs: they work, but they don't work as <em>naturally</em> as we like to believe.</p>
+          <p data-en="Users can learn to modulate their neural activity to drive a cursor or prosthetic, but the neural patterns they produce often look nothing like the patterns associated with actual arm movements. The brain essentially learns a new skill, &quot;BCI control&quot;, that's distinct from natural motor control. It's functional, but artificial." data-fr="Les utilisateurs peuvent apprendre à moduler leur activité neurale pour contrôler un curseur ou une prothèse, mais les schémas neuraux qu'ils produisent ne ressemblent souvent en rien aux schémas associés aux mouvements réels du bras. Le cerveau apprend essentiellement une nouvelle compétence, « le contrôle ICM », qui est distincte du contrôle moteur naturel. C'est fonctionnel, mais artificiel.">Users can learn to modulate their neural activity to drive a cursor or prosthetic, but the neural patterns they produce often look nothing like the patterns associated with actual arm movements. The brain essentially learns a new skill, "BCI control", that's distinct from natural motor control. It's functional, but artificial.</p>
+          <p data-en="Our research explores this boundary. We study how neural activity patterns during imagined or attempted movements relate to the patterns during actual execution (in non-injured subjects or before injury). We ask: why are BCI commands fundamentally different? Can we build decoders that recognize and respond to natural motor intentions rather than requiring users to discover arbitrary neural strategies?" data-fr="Notre recherche explore cette frontière. Nous étudions comment les schémas d'activité neurale pendant les mouvements imaginés ou tentés se rapportent aux schémas pendant l'exécution réelle (chez les sujets non blessés ou avant la blessure). Nous demandons : pourquoi les commandes ICM sont-elles fondamentalement différentes ? Pouvons-nous construire des décodeurs qui reconnaissent et répondent aux intentions motrices naturelles plutôt que d'exiger des utilisateurs qu'ils découvrent des stratégies neurales arbitraires ?">Our research explores this boundary. We study how neural activity patterns during imagined or attempted movements relate to the patterns during actual execution (in non-injured subjects or before injury). We ask: why are BCI commands fundamentally different? Can we build decoders that recognize and respond to natural motor intentions rather than requiring users to discover arbitrary neural strategies?</p>
+
+          <h3 data-en="From Laboratory to Life: Clinical Translation" data-fr="Du laboratoire à la vie : translation clinique">From Laboratory to Life: Clinical Translation</h3>
+          <p data-en="Building a BCI that works in the laboratory is one challenge. Building one that works in daily life—reliably, safely, over years—is another entirely." data-fr="Construire une ICM qui fonctionne en laboratoire est un défi. En construire une qui fonctionne dans la vie quotidienne — de manière fiable, sûre, pendant des années — en est un tout autre.">Building a BCI that works in the laboratory is one challenge. Building one that works in daily life—reliably, safely, over years—is another entirely.</p>
+          <p data-en="Clinical translation demands solutions to problems that pure neuroscience research can sometimes sidestep: surgical approaches that minimize risk, chronic electrode arrays that remain stable for years, decoder algorithms that adapt to gradual changes in neural recordings, user interfaces simple enough for independent use, and regulatory pathways that can bring these technologies to patients who need them." data-fr="La translation clinique exige des solutions à des problèmes que la recherche en neurosciences pure peut parfois contourner : des approches chirurgicales qui minimisent les risques, des réseaux d'électrodes chroniques qui restent stables pendant des années, des algorithmes de décodage qui s'adaptent aux changements graduels des enregistrements neuraux, des interfaces utilisateur suffisamment simples pour une utilisation autonome, et des voies réglementaires qui peuvent apporter ces technologies aux patients qui en ont besoin.">Clinical translation demands solutions to problems that pure neuroscience research can sometimes sidestep: surgical approaches that minimize risk, chronic electrode arrays that remain stable for years, decoder algorithms that adapt to gradual changes in neural recordings, user interfaces simple enough for independent use, and regulatory pathways that can bring these technologies to patients who need them.</p>
+          <p data-en="Our program maintains constant dialogue between preclinical research and clinical reality. We don't just ask &quot;what's scientifically interesting?&quot; but also &quot;what's clinically viable?&quot;" data-fr="Notre programme maintient un dialogue constant entre la recherche préclinique et la réalité clinique. Nous ne demandons pas seulement « qu'est-ce qui est scientifiquement intéressant ? » mais aussi « qu'est-ce qui est cliniquement viable ? »">Our program maintains constant dialogue between preclinical research and clinical reality. We don't just ask "what's scientifically interesting?" but also "what's clinically viable?"</p>
+          <p data-en="The goal is to compress the timeline from &quot;interesting finding&quot; to &quot;available therapy.&quot; Not every BCI research direction needs to be clinically translatable and our laboratory deliberately positions itself at the interface, asking both mechanistic questions about neural computation and practical questions about how to get these technologies into the hands of people who could benefit." data-fr="L'objectif est de comprimer le délai entre « découverte intéressante » et « thérapie disponible ». Chaque direction de recherche sur les ICM n'a pas besoin d'être cliniquement transposable et notre laboratoire se positionne délibérément à l'interface, posant à la fois des questions mécanistiques sur le calcul neural et des questions pratiques sur la façon d'amener ces technologies entre les mains des personnes qui pourraient en bénéficier.">The goal is to compress the timeline from "interesting finding" to "available therapy." Not every BCI research direction needs to be clinically translatable and our laboratory deliberately positions itself at the interface, asking both mechanistic questions about neural computation and practical questions about how to get these technologies into the hands of people who could benefit.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.polymtl.ca/ge/" target="_blank" data-en="Department of Electrical Engineering - Polytechnique Montréal" data-fr="Département de génie électrique - Polytechnique Montréal">Department of Electrical Engineering - Polytechnique Montréal</a>
+        <a href="https://neurosciences.umontreal.ca/" target="_blank" data-en="Neuroscience Research Group (GRSNC) - Université de Montréal" data-fr="Groupe de recherche en neurosciences (GRSNC) - Université de Montréal">Neuroscience Research Group (GRSNC) - Université de Montréal</a>
+        <a href="https://mila.quebec/en" target="_blank">Mila - Quebec AI Institute</a>
+        <a href="https://cibmontreal.ca/en/" target="_blank" data-en="Biomedical Engineering Institute of Montreal" data-fr="Institut de génie biomédical de Montréal">Biomedical Engineering Institute of Montreal</a>
+        <a href="https://circa.openum.ca/" target="_blank" data-en="Centre for Interdisciplinary Research on Montreal" data-fr="Centre de recherche interdisciplinaire sur Montréal">CIRCA - Université de Montréal</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 sciNeurotech Lab</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Pong Game
+    const canvas = document.getElementById('pongCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Game objects
+    const ball = { x: 300, y: 100, vx: 4, vy: 3, radius: 8 };
+    const paddleH = 50, paddleW = 8;
+    const leftPaddle = { y: 75, speed: 0 };
+    const rightPaddle = { y: 75 };
+    let leftScore = 0, rightScore = 0;
+
+    // Controls
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') leftPaddle.speed = -5;
+      if (e.key === 'ArrowDown') leftPaddle.speed = 5;
+    });
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') leftPaddle.speed = 0;
+    });
+
+    function update() {
+      // Move left paddle
+      leftPaddle.y += leftPaddle.speed;
+      leftPaddle.y = Math.max(0, Math.min(canvas.height - paddleH, leftPaddle.y));
+
+      // AI for right paddle
+      const rightCenter = rightPaddle.y + paddleH / 2;
+      if (rightCenter < ball.y - 10) rightPaddle.y += 2;
+      else if (rightCenter > ball.y + 10) rightPaddle.y -= 2;
+      rightPaddle.y = Math.max(0, Math.min(canvas.height - paddleH, rightPaddle.y));
+
+      // Move ball
+      ball.x += ball.vx;
+      ball.y += ball.vy;
+
+      // Top/bottom bounce
+      if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height) ball.vy *= -1;
+
+      // Left paddle collision
+      if (ball.x - ball.radius < 20 && ball.y > leftPaddle.y && ball.y < leftPaddle.y + paddleH) {
+        ball.vx = Math.abs(ball.vx);
+        ball.vx *= 1.05;
+      }
+      // Right paddle collision
+      if (ball.x + ball.radius > canvas.width - 20 && ball.y > rightPaddle.y && ball.y < rightPaddle.y + paddleH) {
+        ball.vx = -Math.abs(ball.vx);
+        ball.vx *= 1.05;
+      }
+
+      // Scoring
+      if (ball.x < 0) { rightScore++; resetBall(); }
+      if (ball.x > canvas.width) { leftScore++; resetBall(); }
+
+      // Speed cap
+      ball.vx = Math.max(-10, Math.min(10, ball.vx));
+    }
+
+    function resetBall() {
+      ball.x = 300; ball.y = 100;
+      ball.vx = (Math.random() > 0.5 ? 4 : -4);
+      ball.vy = (Math.random() - 0.5) * 6;
+    }
+
+    function draw() {
+      // Background
+      ctx.fillStyle = '#1a1a2e';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Center line
+      ctx.strokeStyle = '#444';
+      ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2, 0);
+      ctx.lineTo(canvas.width / 2, canvas.height);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Paddles
+      ctx.fillStyle = '#4299e1';
+      ctx.fillRect(10, leftPaddle.y, paddleW, paddleH);
+      ctx.fillStyle = '#e53e3e';
+      ctx.fillRect(canvas.width - 18, rightPaddle.y, paddleW, paddleH);
+
+      // Ball
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Score
+      ctx.font = '20px Georgia';
+      ctx.fillStyle = '#4299e1';
+      ctx.fillText(leftScore, canvas.width / 2 - 40, 30);
+      ctx.fillStyle = '#e53e3e';
+      ctx.fillText(rightScore, canvas.width / 2 + 30, 30);
+    }
+
+    function gameLoop() {
+      update();
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
+    gameLoop();
+  </script>
+</body>
+</html>

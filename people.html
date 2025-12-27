@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People | sciNeurotech Lab</title>
+  <meta name="description" content="Meet the team at sciNeurotech Lab - Polytechnique Montréal">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="Logo_Poly_desktop.png" alt="Polytechnique Montréal" class="institution-logo">
+          <div class="lab-title">
+            <span class="lab-name">sciNeurotech Lab</span>
+            <a href="https://www.polymtl.ca/expertises/en/bonizzato-marco" target="_blank" class="lab-pi">Marco Bonizzato</a>
+          </div>
+        </a>
+        <div class="lang-switch">
+          <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+          <button id="btn-fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="nav-menu">
+          <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+          <li class="dropdown">
+            <a href="index.html#research" data-en="Research" data-fr="Recherche">Research</a>
+            <div class="dropdown-menu">
+              <a href="research-neurostim.html" data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</a>
+              <a href="research-maths.html" data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</a>
+              <a href="research-bci.html" data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</a>
+            </div>
+          </li>
+          <li><a href="publications.html" data-en="Publications" data-fr="Publications">Publications</a></li>
+          <li><a href="people.html" class="active" data-en="People" data-fr="Équipe">People</a></li>
+          <li><a href="positions.html" data-en="Positions" data-fr="Postes">Positions</a></li>
+          <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-title">
+        <h1 data-en="People" data-fr="Équipe">People</h1>
+      </div>
+
+      <div class="people-nav">
+        <a href="#pi" data-en="Management" data-fr="Direction">Management</a>
+        <a href="#postdocs-grad" data-en="Postdocs & Grad" data-fr="Postdocs & Grad">Postdocs & Grad</a>
+        <!--  <a href="#alumni" data-en="Alumni" data-fr="Anciens">Alumni</a> -->
+        <a href="#group-photos" data-en="Group Photos" data-fr="Photos de groupe">Group Photos</a>
+      </div>
+
+      <div class="page-content-simple">
+
+        <!-- Principal Investigator -->
+        <div id="pi" class="people-section">
+          <h3 data-en="Principal Investigator" data-fr="Chercheur principal">Principal Investigator</h3>
+          <div class="people-list">
+            <div class="person-row">
+              <div class="photo"><img src="head_MB.png" alt="Marco Bonizzato"></div>
+              <div class="info">
+                <h4>Marco Bonizzato, Ph.D.</h4>
+                <p class="role" data-en="Associate Professor" data-fr="Professeur agrégé">Associate Professor</p>
+                <p class="bio" data-en="Marco leads the sciNeurotech Lab at Polytechnique Montréal and Université de Montréal, since 2022." data-fr="Marco dirige le laboratoire sciNeurotech à Polytechnique Montréal et Université de Montréal, depuis 2022.">Marco leads the sciNeurotech Lab at Polytechnique Montréal and Université de Montréal, since 2022.</p>
+                <div class="links">
+                  <a href="mailto:marco.bonizzato@polymtl.ca">Email</a>
+                  <a href="https://scholar.google.ca/citations?user=FotSO_sAAAAJ" target="_blank">Google Scholar</a>
+                  <a href="https://x.com/MarcoBonizzato" target="_blank" class="social-icon" title="X (Twitter)">𝕏</a>
+                  <a href="https://www.linkedin.com/in/bonizzato/" target="_blank" class="social-icon" title="LinkedIn">in</a>
+                  <a href="https://github.com/mbonizzato" target="_blank" class="social-icon" title="GitHub">GH</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research Associate -->
+        <div id="research-associate" class="people-section">
+          <h3 data-en="Research Associate" data-fr="Associée de recherche">Research Associate</h3>
+          <div class="people-list">
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Catherine Thériault</h4>
+                <p class="role" data-en="Research Associate - Université de Montréal" data-fr="Associée de recherche - Université de Montréal">Research Associate - Université de Montréal</p>
+                <p class="bio" data-en="Rodent neuroscience research platform manager." data-fr="Gestionnaire de la plateforme de recherche en neurosciences sur les rongeurs.">Rodent neuroscience research platform manager.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Postdocs and Graduate Students -->
+        <div id="postdocs-grad" class="people-section">
+          <h3 data-en="Postdocs & Graduate Students" data-fr="Postdoctorants et étudiants gradués">Postdocs & Graduate Students</h3>
+          <div class="people-list">
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Alireza Aminian</h4>
+                <p class="role" data-en="Ph.D. Student - Polytechnique Montréal" data-fr="Étudiant au doctorat - Polytechnique Montréal">Ph.D. Student - Polytechnique Montréal</p>
+                <p class="bio" data-en="Research focus: Cortical control of movement in the rat." data-fr="Sujet de recherche: Contrôle cortical du mouvement chez le rat.">Research focus: Cortical control of movement in the rat.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Claire Dussard, Ph.D.</h4>
+                <p class="role" data-en="Postdoctoral Fellow - Polytechnique Montréal" data-fr="Stagiaire postdoctorale - Polytechnique Montréal">Postdoctoral Fellow - Polytechnique Montréal</p>
+                <p class="bio" data-en="Research focus: Neural decoding in Parkinson's disease." data-fr="Sujet de recherche: Décodage neural dans la maladie de Parkinson.">Research focus: Neural decoding in Parkinson's disease.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Davide Burchielli</h4>
+                <p class="role" data-en="Ph.D. Student - Polytechnique Montréal" data-fr="Étudiant au doctorat - Polytechnique Montréal">Ph.D. Student - Polytechnique Montréal</p>
+                <p class="bio" data-en="Research focus: Distributed Brain Computer Interfaces." data-fr="Sujet de recherche: Interfaces cerveau-machine distribuées.">Research focus: Distributed Brain Computer Interfaces.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Émilie Théberge</h4>
+                <p class="role" data-en="M.Sc. Student - Polytechnique Montréal" data-fr="Étudiante à la maîtrise - Polytechnique Montréal">M.Sc. Student - Polytechnique Montréal</p>
+                <p class="bio" data-en="Research focus: Neurorobotics." data-fr="Sujet de recherche: Neurorobotique.">Research focus: Neurorobotic platform.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Juan David Guerra</h4>
+                <p class="role" data-en="M.Sc. Student - Polytechnique Montréal" data-fr="Étudiant à la maîtrise - Polytechnique Montréal">M.Sc. Student - Polytechnique Montréal</p>
+                <p class="bio" data-en="Research focus: Hierarchical GPBO." data-fr="Sujet de recherche: GPBO hiérarchique.">Research focus: Hierarchical GPBO.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Julie Lanthier</h4>
+                <p class="role" data-en="Ph.D. Student - Université de Montréal" data-fr="Étudiante au doctorat - Université de Montréal">Ph.D. Student - Université de Montréal</p>
+                <p class="bio" data-en="Research focus: Cortical neuromodulation interfaces." data-fr="Sujet de recherche: Interfaces de neuromodulation corticale.">Research focus: Cortical neuromodulation interfaces.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Lison Kardassevitch</h4>
+                <p class="role" data-en="Ph.D. Student - Université de Montréal" data-fr="Étudiante au doctorat - Université de Montréal">Ph.D. Student - Université de Montréal</p>
+                <p class="bio" data-en="Research focus: Distributed neuroprosthetics." data-fr="Sujet de recherche: Neuroprothèses distribuées.">Research focus: Distributed neuroprosthetics.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Mauricio Rivera</h4>
+                <p class="role" data-en="M.Sc. Student - Université de Montréal" data-fr="Étudiant à la maîtrise - Université de Montréal">M.Sc. Student - Université de Montréal</p>
+                <p class="bio" data-en="Research focus: Scaling laws of GPBO." data-fr="Sujet de recherche: Lois d'échelle du GPBO.">Research focus: Scaling laws of GPBO.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Radu Darie, Ph.D.</h4>
+                <p class="role" data-en="Postdoctoral Fellow - Polytechnique Montréal" data-fr="Stagiaire postdoctoral - Polytechnique Montréal">Postdoctoral Fellow - Polytechnique Montréal</p>
+                <p class="bio" data-en="Research focus: Ultra-rapid optimization of neural interfaces." data-fr="Sujet de recherche: Optimisation ultra-rapide des interfaces neurales.">Research focus: Ultra-rapid optimization of neural interfaces.</p>
+              </div>
+            </div>
+
+            <div class="person-row">
+              <div class="photo">&#128100;</div>
+              <div class="info">
+                <h4>Rima El Hassan</h4>
+                <p class="role" data-en="Ph.D. Student - Polytechnique Montréal" data-fr="Étudiante au doctorat - Polytechnique Montréal">Ph.D. Student - Polytechnique Montréal</p>
+                <p class="bio" data-en="Research focus: Cortical neuroprosthetics." data-fr="Sujet de recherche: Neuroprothèses corticales.">Research focus: Cortical neuroprosthetics.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Alumni 
+        <div id="alumni" class="people-section">
+          <h3 data-en="Alumni" data-fr="Anciens membres">Alumni</h3>
+          <div class="alumni-list">
+            <p><strong>Boris Touvykine, Ph.D.</strong> — Postdoc, Polytechnique Montréal</p>
+            <p><strong>Héloïse Bourgeois</strong> — M.Sc., Polytechnique Montréal</p>
+            <p><strong>Nicolas Fortier-Lebel, Ph.D.</strong> — Postdoc, Université de Montréal</p>
+            <p><strong>Nicolas Leblanc</strong> — M.Sc., Polytechnique Montréal</p>
+            <p><strong>Rose Guay Hottin</strong> — M.Sc., Polytechnique Montréal</p>
+            <p><strong>William Lata</strong> — M.Sc., Université de Montréal</p>
+          </div>
+        </div>
+        -->
+
+        <!-- Group Photos -->
+        <div id="group-photos" class="people-section">
+          <h3 data-en="Group Photos" data-fr="Photos de groupe">Group Photos</h3>
+          <div class="photo-gallery">
+            <div class="gallery-main">
+              <img id="gallery-main-img" src="grouppic1.jpg" alt="Group Photo">
+            </div>
+            <div class="gallery-thumbnails">
+              <div class="gallery-thumb active" onclick="changeGalleryImage('grouppic1.jpg', this)">
+                <img src="grouppic1.jpg" alt="Group Photo 1">
+              </div>
+              <div class="gallery-thumb" onclick="changeGalleryImage('grouppic2.jpg', this)">
+                <img src="grouppic2.jpg" alt="Group Photo 2">
+              </div>
+              <div class="gallery-thumb" onclick="changeGalleryImage('grouppic3.jpg', this)">
+                <img src="grouppic3.jpg" alt="Group Photo 3">
+              </div>
+              <div class="gallery-thumb" onclick="changeGalleryImage('grouppic4.jpg', this)">
+                <img src="grouppic4.jpg" alt="Group Photo 4">
+              </div>
+              <div class="gallery-thumb" onclick="changeGalleryImage('grouppic5.jpg', this)">
+                <img src="grouppic5.jpg" alt="Group Photo 5">
+              </div>
+              <div class="gallery-thumb" onclick="changeGalleryImage('grouppic6.png', this)">
+                <img src="grouppic6.png" alt="Group Photo 6">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.polymtl.ca/ge/" target="_blank" data-en="Department of Electrical Engineering - Polytechnique Montréal" data-fr="Département de génie électrique - Polytechnique Montréal">Department of Electrical Engineering - Polytechnique Montréal</a>
+        <a href="https://neurosciences.umontreal.ca/" target="_blank" data-en="Department of Neurosciences - Université de Montréal" data-fr="Département de neurosciences - Université de Montréal">Department of Neurosciences - Université de Montréal</a>
+        <a href="https://mila.quebec/en" target="_blank" data-en="Mila - Québec AI Institute" data-fr="Mila - Institut québécois d'intelligence artificielle">Mila - Quebec AI Institute</a>
+        <a href="https://cibmontreal.ca/en/" target="_blank">Institut Courtois d'innovation biomédicale (CI2B)</a>
+        <a href="https://circa.openum.ca/" target="_blank">Centre interdisciplinaire de recherche sur le cerveau et l'apprentissage (CIRCA)</a>
+        <a href="https://www.unique.quebec/" target="_blank" data-en="Unifying Neuroscience and Artificial Intelligence - Québec" data-fr="Union Neurosciences et Intelligence Artificielle - Québec">Centre UNIQUE</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 sciNeurotech Lab</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neurostimulation | sciNeurotech Lab</title>
+  <meta name="description" content="Neurostimulation research at sciNeurotech Lab - developing advanced electrical stimulation paradigms for neural repair">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="Logo_Poly_desktop.png" alt="Polytechnique Montréal" class="institution-logo">
+          <div class="lab-title">
+            <span class="lab-name">sciNeurotech Lab</span>
+            <a href="https://www.polymtl.ca/expertises/en/bonizzato-marco" target="_blank" class="lab-pi">Marco Bonizzato</a>
+          </div>
+        </a>
+        <div class="lang-switch">
+          <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+          <button id="btn-fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="nav-menu">
+          <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+          <li class="dropdown">
+            <a href="index.html#research" class="active" data-en="Research" data-fr="Recherche">Research</a>
+            <div class="dropdown-menu">
+              <a href="research-neurostim.html" data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</a>
+              <a href="research-maths.html" data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</a>
+              <a href="research-bci.html" data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</a>
+            </div>
+          </li>
+          <li><a href="publications.html" data-en="Publications" data-fr="Publications">Publications</a></li>
+          <li><a href="people.html" data-en="People" data-fr="Équipe">People</a></li>
+          <li><a href="positions.html" data-en="Positions" data-fr="Postes">Positions</a></li>
+          <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-title">
+        <h1 data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</h1>
+      </div>
+
+      <div class="page-content-simple">
+        <div class="research-detail">
+          <h3 data-en="Understanding Neurostimulation" data-fr="Comprendre la neurostimulation">Understanding Neurostimulation</h3>
+          <p data-en="Neurostimulation uses precisely controlled electrical signals to modulate nervous system activity. In clinical settings, this technology has transformed the treatment of neurological conditions, from deep brain stimulation for Parkinson's disease to spinal cord stimulation for chronic pain. These electrical interventions work by engaging residual neural circuits, compensating for lost function, or promoting adaptive plasticity in damaged nervous systems." data-fr="La neurostimulation utilise des signaux électriques précisément contrôlés pour moduler l'activité du système nerveux. En milieu clinique, cette technologie a transformé le traitement des conditions neurologiques, de la stimulation cérébrale profonde pour la maladie de Parkinson à la stimulation de la moelle épinière pour la douleur chronique. Ces interventions électriques fonctionnent en engageant les circuits neuraux résiduels, en compensant les fonctions perdues ou en favorisant la plasticité adaptative dans les systèmes nerveux endommagés.">Neurostimulation uses precisely controlled electrical signals to modulate nervous system activity. In clinical settings, this technology has transformed the treatment of neurological conditions, from deep brain stimulation for Parkinson's disease to spinal cord stimulation for chronic pain. These electrical interventions work by engaging residual neural circuits, compensating for lost function, or promoting adaptive plasticity in damaged nervous systems.</p>
+          <p data-en="Our Lab asks: can neurostimulation actually drive motor recovery? What patterns of electrical activity restore movement? Which neural circuits must be engaged? How can we personalize stimulation to each individual's unique injury and recovery trajectory?" data-fr="Notre laboratoire se demande : la neurostimulation peut-elle réellement favoriser la récupération motrice ? Quels schémas d'activité électrique restaurent le mouvement ? Quels circuits neuraux doivent être engagés ? Comment personnaliser la stimulation selon la blessure unique et la trajectoire de récupération de chaque individu ?">Our Lab asks: can neurostimulation actually drive motor recovery? What patterns of electrical activity restore movement? Which neural circuits must be engaged? How can we personalize stimulation to each individual's unique injury and recovery trajectory?</p>
+
+          <h3 data-en="From Bench to Bedside: The Translational Arc" data-fr="Du laboratoire au chevet : l'arc translationnel">From Bench to Bedside: The Translational Arc</h3>
+          <p data-en="Just as new medications are first tested in laboratory models before reaching patients, neurostimulation therapies must follow a translational pathway. We begin with fundamental questions in rodent models: mapping the neural circuits responsible for movement control, testing how electrical stimulation interacts with damaged pathways, and developing the algorithms that will eventually guide clinical systems." data-fr="Tout comme les nouveaux médicaments sont d'abord testés sur des modèles de laboratoire avant d'atteindre les patients, les thérapies de neurostimulation doivent suivre une voie translationnelle. Nous commençons par des questions fondamentales sur des modèles de rongeurs : cartographier les circuits neuraux responsables du contrôle du mouvement, tester comment la stimulation électrique interagit avec les voies endommagées et développer les algorithmes qui guideront éventuellement les systèmes cliniques.">Just as new medications are first tested in laboratory models before reaching patients, neurostimulation therapies must follow a translational pathway. We begin with fundamental questions in rodent models: mapping the neural circuits responsible for movement control, testing how electrical stimulation interacts with damaged pathways, and developing the algorithms that will eventually guide clinical systems.</p>
+          <p data-en="This preclinical work is where we discover the mechanistic principles that make therapy possible. In our laboratory, insights from rodent studies of cortical control over locomotion and grasping have directly shaped ongoing human clinical trials. The continuum from animal model to human patient isn't a one-way street; clinical observations inform our basic research questions, creating a new research cycle." data-fr="C'est dans ce travail préclinique que nous découvrons les principes mécanistiques qui rendent la thérapie possible. Dans notre laboratoire, les découvertes issues d'études sur les rongeurs concernant le contrôle cortical de la locomotion et de la préhension ont directement façonné des essais cliniques humains en cours. Le continuum du modèle animal au patient humain n'est pas à sens unique ; les observations cliniques informent nos questions de recherche fondamentale, créant un nouveau cycle de recherche.">This preclinical work is where we discover the mechanistic principles that make therapy possible. In our laboratory, insights from rodent studies of cortical control over locomotion and grasping have directly shaped ongoing human clinical trials. The continuum from animal model to human patient isn't a one-way street; clinical observations inform our basic research questions, creating a new research cycle.</p>
+
+          <h3 data-en="Closing the Loop: Adaptive Neurostimulation" data-fr="Boucler la boucle : neurostimulation adaptative">Closing the Loop: Adaptive Neurostimulation</h3>
+          <p data-en="Our laboratory focuses on two primary approaches to neural repair through electrical stimulation: <strong>cortical stimulation</strong> to restore movement after spinal cord injury, and <strong>deep brain stimulation (DBS)</strong> targeting the brain's motor circuits." data-fr="Notre laboratoire se concentre sur deux approches principales de réparation neurale par stimulation électrique : la <strong>stimulation corticale</strong> pour restaurer le mouvement après une lésion de la moelle épinière, et la <strong>stimulation cérébrale profonde (SCP)</strong> ciblant les circuits moteurs du cerveau.">Our laboratory focuses on two primary approaches to neural repair through electrical stimulation: <strong>cortical stimulation</strong> to restore movement after spinal cord injury, and <strong>deep brain stimulation (DBS)</strong> targeting the brain's motor circuits.</p>
+          <p data-en="What unites these approaches is a commitment to <em>adaptive</em> neuromodulation: systems that sense neural activity in real-time and adjust stimulation accordingly. Traditional neurostimulation delivers fixed patterns of electrical pulses, essentially replaying the same signal regardless of what the nervous system is doing. This is like trying to have a conversation where you can only speak, never listen." data-fr="Ce qui unit ces approches est un engagement envers la neuromodulation <em>adaptative</em> : des systèmes qui détectent l'activité neurale en temps réel et ajustent la stimulation en conséquence. La neurostimulation traditionnelle délivre des schémas fixes d'impulsions électriques, rejouant essentiellement le même signal indépendamment de ce que fait le système nerveux. C'est comme essayer d'avoir une conversation où l'on ne peut que parler, jamais écouter.">What unites these approaches is a commitment to <em>adaptive</em> neuromodulation: systems that sense neural activity in real-time and adjust stimulation accordingly. Traditional neurostimulation delivers fixed patterns of electrical pulses, essentially replaying the same signal regardless of what the nervous system is doing. This is like trying to have a conversation where you can only speak, never listen.</p>
+          <p data-en="Closed-loop systems change this. The stimulation adapts to what the brain is trying to do, supporting voluntary effort rather than overriding it." data-fr="Les systèmes en boucle fermée changent cela. La stimulation s'adapte à ce que le cerveau essaie de faire, soutenant l'effort volontaire plutôt que de le supplanter.">Closed-loop systems change this. The stimulation adapts to what the brain is trying to do, supporting voluntary effort rather than overriding it.</p>
+          <p data-en="This adaptive approach reflects a deeper principle: recovery isn't about replacing lost function with technology, but about creating the conditions where the nervous system can reorganize itself. The stimulation may then serve as a guide, strengthening weak connections and gradually building back the neural infrastructure of motor control." data-fr="Cette approche adaptative reflète un principe plus profond : la récupération ne consiste pas à remplacer les fonctions perdues par la technologie, mais à créer les conditions permettant au système nerveux de se réorganiser. La stimulation peut alors servir de guide, renforçant les connexions faibles et reconstruisant progressivement l'infrastructure neurale du contrôle moteur.">This adaptive approach reflects a deeper principle: recovery isn't about replacing lost function with technology, but about creating the conditions where the nervous system can reorganize itself. The stimulation may then serve as a guide, strengthening weak connections and gradually building back the neural infrastructure of motor control.</p>
+
+          <h3 data-en="Toward Personalized Neural Repair" data-fr="Vers une réparation neurale personnalisée">Toward Personalized Neural Repair</h3>
+          <p data-en="Every spinal cord injury is unique. The location and extent of damage, the configuration of surviving pathways, the individual's motor learning capacity: all of these factors determine what's possible for recovery. Our goal is to develop neurostimulation systems that can be personalized to each patient's specific needs." data-fr="Chaque lésion de la moelle épinière est unique. L'emplacement et l'étendue des dommages, la configuration des voies survivantes, la capacité d'apprentissage moteur de l'individu : tous ces facteurs déterminent ce qui est possible pour la récupération. Notre objectif est de développer des systèmes de neurostimulation personnalisables aux besoins spécifiques de chaque patient.">Every spinal cord injury is unique. The location and extent of damage, the configuration of surviving pathways, the individual's motor learning capacity: all of these factors determine what's possible for recovery. Our goal is to develop neurostimulation systems that can be personalized to each patient's specific needs.</p>
+          <p data-en="This requires integrating multiple technologies: high-resolution neural interfaces that can both record and stimulate with precision, computational models that predict how electrical fields interact with neural tissue, and artificial intelligence algorithms that continuously optimize stimulation parameters based on recovery progress." data-fr="Cela nécessite l'intégration de multiples technologies : des interfaces neurales haute résolution capables d'enregistrer et de stimuler avec précision, des modèles computationnels qui prédisent comment les champs électriques interagissent avec le tissu neural, et des algorithmes d'intelligence artificielle qui optimisent continuellement les paramètres de stimulation en fonction des progrès de récupération.">This requires integrating multiple technologies: high-resolution neural interfaces that can both record and stimulate with precision, computational models that predict how electrical fields interact with neural tissue, and artificial intelligence algorithms that continuously optimize stimulation parameters based on recovery progress.</p>
+          <p data-en="We're working to build the complete translational pipeline, from establishing the fundamental neuroscience in animal models, to developing the hardware and software platforms, to designing and conducting the clinical trials that will bring these therapies to patients. It's a long arc of research, but one grounded in the conviction that we can do better than the one-size-fits-all approaches of the past. The nervous system is adaptive. Our therapies should be too." data-fr="Nous travaillons à construire le pipeline translationnel complet, de l'établissement des neurosciences fondamentales dans les modèles animaux, au développement des plateformes matérielles et logicielles, à la conception et la conduite des essais cliniques qui apporteront ces thérapies aux patients. C'est un long arc de recherche, mais ancré dans la conviction que nous pouvons faire mieux que les approches uniformes du passé. Le système nerveux est adaptatif. Nos thérapies devraient l'être aussi.">We're working to build the complete translational pipeline, from establishing the fundamental neuroscience in animal models, to developing the hardware and software platforms, to designing and conducting the clinical trials that will bring these therapies to patients. It's a long arc of research, but one grounded in the conviction that we can do better than the one-size-fits-all approaches of the past. The nervous system is adaptive. Our therapies should be too.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.polymtl.ca/ge/" target="_blank" data-en="Department of Electrical Engineering - Polytechnique Montréal" data-fr="Département de génie électrique - Polytechnique Montréal">Department of Electrical Engineering - Polytechnique Montréal</a>
+        <a href="https://neurosciences.umontreal.ca/" target="_blank" data-en="Neuroscience Research Group (GRSNC) - Université de Montréal" data-fr="Groupe de recherche en neurosciences (GRSNC) - Université de Montréal">Neuroscience Research Group (GRSNC) - Université de Montréal</a>
+        <a href="https://mila.quebec/en" target="_blank">Mila - Quebec AI Institute</a>
+        <a href="https://cibmontreal.ca/en/" target="_blank" data-en="Biomedical Engineering Institute of Montreal" data-fr="Institut de génie biomédical de Montréal">Biomedical Engineering Institute of Montreal</a>
+        <a href="https://circa.openum.ca/" target="_blank" data-en="Centre for Interdisciplinary Research on Montreal" data-fr="Centre de recherche interdisciplinaire sur Montréal">CIRCA - Université de Montréal</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 sciNeurotech Lab</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

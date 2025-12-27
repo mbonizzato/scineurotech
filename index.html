@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sciNeurotech Lab | Marco Bonizzato | Polytechnique Montréal</title>
+  <meta name="description" content="sciNeurotech Lab - Neurostimulation, Brain-Computer Interfaces, and Mathematical Optimization research at Polytechnique Montréal">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="Logo_Poly_desktop.png" alt="Polytechnique Montréal" class="institution-logo">
+          <div class="lab-title">
+            <span class="lab-name">sciNeurotech Lab</span>
+            <a href="https://www.polymtl.ca/expertises/en/bonizzato-marco" target="_blank" class="lab-pi">Marco Bonizzato</a>
+          </div>
+        </a>
+        <div class="lang-switch">
+          <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+          <button id="btn-fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="nav-menu">
+          <li><a href="index.html" class="active" data-en="Home" data-fr="Accueil">Home</a></li>
+          <li class="dropdown">
+            <a href="index.html#research" data-en="Research" data-fr="Recherche">Research</a>
+            <div class="dropdown-menu">
+              <a href="research-neurostim.html" data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</a>
+              <a href="research-maths.html" data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</a>
+              <a href="research-bci.html" data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</a>
+            </div>
+          </li>
+          <li><a href="publications.html" data-en="Publications" data-fr="Publications">Publications</a></li>
+          <li><a href="people.html" data-en="People" data-fr="Équipe">People</a></li>
+          <li><a href="positions.html" data-en="Positions" data-fr="Postes">Positions</a></li>
+          <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-minimal">
+      <div class="container">
+        <div class="hero-figure">
+          <div class="placeholder-figure">
+            <img src="hero.png" alt="Research Overview" data-en-src="hero.png" data-fr-src="hero_FR.png" class="hero-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="research-areas-minimal">
+      <div class="container">
+        <h2 class="research-section-title" data-en="Research:" data-fr="Recherche:">Research:</h2>
+        <div class="research-grid-minimal">
+          <a href="research-neurostim.html" class="research-card-box">
+            <span class="card-icon">⚡</span>
+            <h3 data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</h3>
+          </a>
+          <a href="research-maths.html" class="research-card-box">
+            <span class="card-icon">📊</span>
+            <h3 data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</h3>
+          </a>
+          <a href="research-bci.html" class="research-card-box">
+            <span class="card-icon">🧠</span>
+            <h3 data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.polymtl.ca/ge/" target="_blank" data-en="Department of Electrical Engineering - Polytechnique Montréal" data-fr="Département de génie électrique - Polytechnique Montréal">Department of Electrical Engineering - Polytechnique Montréal</a>
+        <a href="https://neurosciences.umontreal.ca/" target="_blank" data-en="Department of Neurosciences - Université de Montréal" data-fr="Département de neurosciences - Université de Montréal">Department of Neurosciences - Université de Montréal</a>
+        <a href="https://mila.quebec/en" target="_blank" data-en="Mila - Québec AI Institute" data-fr="Mila - Institut québécois d'intelligence artificielle">Mila - Quebec AI Institute</a>
+        <a href="https://cibmontreal.ca/en/" target="_blank">Institut Courtois d'innovation biomédicale (CI2B)</a>
+        <a href="https://circa.openum.ca/" target="_blank" >Centre interdisciplinaire de recherche sur le cerveau et l'apprentissage (CIRCA)</a>
+        <a href="https://www.unique.quebec/" target="_blank" data-en="Unifying Neuroscience and Artificial Intelligence - Québec" data-fr="Union Neurosciences et Intelligence Artificielle - Québec"> Centre UNIQUE</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 sciNeurotech Lab</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

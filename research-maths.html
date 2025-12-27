@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematical Optimization | sciNeurotech Lab</title>
+  <meta name="description" content="Mathematical optimization research at sciNeurotech Lab - computational approaches to neural systems">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="Logo_Poly_desktop.png" alt="Polytechnique Montréal" class="institution-logo">
+          <div class="lab-title">
+            <span class="lab-name">sciNeurotech Lab</span>
+            <a href="https://www.polymtl.ca/expertises/en/bonizzato-marco" target="_blank" class="lab-pi">Marco Bonizzato</a>
+          </div>
+        </a>
+        <div class="lang-switch">
+          <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+          <button id="btn-fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="nav-menu">
+          <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+          <li class="dropdown">
+            <a href="index.html#research" class="active" data-en="Research" data-fr="Recherche">Research</a>
+            <div class="dropdown-menu">
+              <a href="research-neurostim.html" data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</a>
+              <a href="research-maths.html" data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</a>
+              <a href="research-bci.html" data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</a>
+            </div>
+          </li>
+          <li><a href="publications.html" data-en="Publications" data-fr="Publications">Publications</a></li>
+          <li><a href="people.html" data-en="People" data-fr="Équipe">People</a></li>
+          <li><a href="positions.html" data-en="Positions" data-fr="Postes">Positions</a></li>
+          <li><a href="contact.html" data-en="Contact" data-fr="Contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-title">
+        <h1 data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</h1>
+      </div>
+
+      <div class="page-content-simple">
+        <div class="research-detail">
+          <!-- GPBO Interactive Demo -->
+          <div class="gpbo-demo-container">
+            <h4 data-en="The Optimization Game" data-fr="Le jeu d'optimisation">The Optimization Game</h4>
+            <p class="gpbo-instructions" data-en="A secret two-note sequence has been generated. Your goal is to find it! Play two notes on the keyboard and the brain will score how close you are (0-10). Can you beat the GPBO algorithm?" data-fr="Une séquence secrète de deux notes a été générée. Votre objectif est de la trouver ! Jouez deux notes au clavier et le cerveau notera à quel point vous êtes proche (0-10). Pouvez-vous battre l'algorithme GPBO ?">A secret two-note sequence has been generated. Your goal is to find it! Play two notes on the keyboard and the brain will score how close you are (0-10). Can you beat the GPBO algorithm?</p>
+
+            <div class="gpbo-game-layout">
+              <!-- Left side: Human player -->
+              <div class="gpbo-human-side">
+                <div class="gpbo-score-display">
+                  <div class="gpbo-score-box" id="humanScoreBox">--</div>
+                  <div class="gpbo-brain-icon">
+                    <svg id="brainIcon" viewBox="0 0 100 100" width="60" height="60">
+                      <ellipse cx="50" cy="50" rx="40" ry="35" fill="#f8a5c2" stroke="#e84393" stroke-width="2"/>
+                      <path d="M30 35 Q35 25 50 30 Q65 25 70 35" fill="none" stroke="#e84393" stroke-width="2"/>
+                      <path d="M25 50 Q30 40 40 45 Q50 35 60 45 Q70 40 75 50" fill="none" stroke="#e84393" stroke-width="2"/>
+                      <path d="M30 65 Q40 55 50 60 Q60 55 70 65" fill="none" stroke="#e84393" stroke-width="2"/>
+                      <path d="M50 80 Q50 70 50 65" fill="none" stroke="#e84393" stroke-width="3"/>
+                      <ellipse cx="50" cy="85" rx="5" ry="8" fill="#f8a5c2" stroke="#e84393" stroke-width="2"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="piano-container" id="pianoContainer">
+                  <div class="piano-keys">
+                    <div class="piano-key white-key" data-note="C4" data-key="A">
+                      <span class="key-label">A</span>
+                      <span class="note-label">C4</span>
+                    </div>
+                    <div class="piano-key black-key" data-note="C#4" data-key="W"></div>
+                    <div class="piano-key white-key" data-note="D4" data-key="S">
+                      <span class="key-label">S</span>
+                      <span class="note-label">D4</span>
+                    </div>
+                    <div class="piano-key black-key" data-note="D#4" data-key="E"></div>
+                    <div class="piano-key white-key" data-note="E4" data-key="D">
+                      <span class="key-label">D</span>
+                      <span class="note-label">E4</span>
+                    </div>
+                    <div class="piano-key white-key" data-note="F4" data-key="F">
+                      <span class="key-label">F</span>
+                      <span class="note-label">F4</span>
+                    </div>
+                    <div class="piano-key black-key" data-note="F#4" data-key="T"></div>
+                    <div class="piano-key white-key" data-note="G4" data-key="G">
+                      <span class="key-label">G</span>
+                      <span class="note-label">G4</span>
+                    </div>
+                    <div class="piano-key black-key" data-note="G#4" data-key="Y"></div>
+                    <div class="piano-key white-key" data-note="A4" data-key="H">
+                      <span class="key-label">H</span>
+                      <span class="note-label">A4</span>
+                    </div>
+                    <div class="piano-key black-key" data-note="A#4" data-key="U"></div>
+                    <div class="piano-key white-key" data-note="B4" data-key="J">
+                      <span class="key-label">J</span>
+                      <span class="note-label">B4</span>
+                    </div>
+                    <div class="piano-key white-key" data-note="C5" data-key="K">
+                      <span class="key-label">K</span>
+                      <span class="note-label">C5</span>
+                    </div>
+                    <div class="piano-key black-key" data-note="C#5" data-key="O"></div>
+                    <div class="piano-key white-key" data-note="D5" data-key="L">
+                      <span class="key-label">L</span>
+                      <span class="note-label">D5</span>
+                    </div>
+                    <div class="piano-key black-key" data-note="D#5" data-key="P"></div>
+                    <div class="piano-key white-key" data-note="E5" data-key=";">
+                      <span class="key-label">;</span>
+                      <span class="note-label">E5</span>
+                    </div>
+                    <div class="piano-key white-key" data-note="F5" data-key="'">
+                      <span class="key-label">'</span>
+                      <span class="note-label">F5</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="gpbo-human-info">
+                  <p data-en="Your sequence:" data-fr="Votre séquence :">Your sequence:</p>
+                  <span id="humanSequence" class="sequence-display">-- --</span>
+                  <p data-en="Best score:" data-fr="Meilleur score :">Best score:</p>
+                  <span id="humanBestScore" class="best-score">0</span>
+                </div>
+              </div>
+
+              <!-- Right side: GPBO algorithm -->
+              <div class="gpbo-algorithm-side">
+                <div class="gpbo-header">
+                  <span class="gpbo-title">GPBO</span>
+                  <button id="gpboPlayBtn" class="gpbo-play-btn" title="Run GPBO">
+                    <span class="play-icon">&#9658;</span>
+                  </button>
+                </div>
+
+                <div class="gpbo-grid-wrapper">
+                  <div class="gpbo-y-axis">
+                    <span class="axis-title" data-en="2nd note" data-fr="2e note">2nd note</span>
+                    <div class="axis-notes y-axis-notes">
+                      <span>C4</span><span>D4</span><span>E4</span><span>F4</span><span>G4</span><span>A4</span><span>B4</span><span>C5</span><span>D5</span><span>E5</span><span>F5</span>
+                    </div>
+                  </div>
+                  <div class="gpbo-grid-main">
+                    <div class="gpbo-grid-container">
+                      <canvas id="gpboCanvas" width="300" height="300"></canvas>
+                    </div>
+                    <div class="gpbo-x-axis">
+                      <div class="axis-notes x-axis-notes">
+                        <span>C4</span><span>D4</span><span>E4</span><span>F4</span><span>G4</span><span>A4</span><span>B4</span><span>C5</span><span>D5</span><span>E5</span><span>F5</span>
+                      </div>
+                      <span class="axis-title" data-en="1st note" data-fr="1re note">1st note</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="gpbo-algorithm-info">
+                  <p data-en="GPBO best score:" data-fr="Meilleur score GPBO :">GPBO best score:</p>
+                  <span id="gpboBestScore" class="best-score">0</span>
+                  <p data-en="Iterations:" data-fr="Itérations :">Iterations:</p>
+                  <span id="gpboIterations">0 / 10</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="gpbo-controls">
+              <button id="newGameBtn" class="gpbo-btn" data-en="New Game" data-fr="Nouvelle partie">New Game</button>
+              <button id="revealBtn" class="gpbo-btn" data-en="Reveal Answer" data-fr="Révéler la réponse">Reveal Answer</button>
+            </div>
+            <p id="revealText" class="reveal-text" style="display: none;"></p>
+
+          </div>
+
+          <h3 data-en="The Tuning Problem" data-fr="Le problème du réglage">The Tuning Problem</h3>
+          <p data-en="The brain orchestrates movement through electrical signals, rapid volleys of precisely timed impulses that travel through circuits, coordinate muscle contractions, and generate actions. An artificial neural interface can also communicate with the nervous system with carefully crafted electrical pulses." data-fr="Le cerveau orchestre le mouvement par des signaux électriques, des salves rapides d'impulsions précisément synchronisées qui voyagent à travers les circuits, coordonnent les contractions musculaires et génèrent des actions. Une interface neurale artificielle peut également communiquer avec le système nerveux grâce à des impulsions électriques soigneusement élaborées.">The brain orchestrates movement through electrical signals, rapid volleys of precisely timed impulses that travel through circuits, coordinate muscle contractions, and generate actions. An artificial neural interface can also communicate with the nervous system with carefully crafted electrical pulses.</p>
+          <p data-en="But how do we get this communication right?" data-fr="Mais comment établir correctement cette communication ?">But how do we get this communication right?</p>
+          <p data-en="Consider a neural interface with many electrodes. Each electrode can stimulate at different intensities, different pulse widths, different frequencies, at different times, and in different spatial patterns. The number of possible combinations explodes exponentially. Finding the stimulation pattern that produces a specific desired movement - lifting a foot, opening a hand, maintaining balance - becomes a search through a space so vast that manual testing is simply impossible." data-fr="Considérons une interface neurale avec de nombreuses électrodes. Chaque électrode peut stimuler à différentes intensités, différentes largeurs d'impulsion, différentes fréquences, à différents moments et selon différents schémas spatiaux. Le nombre de combinaisons possibles explose de façon exponentielle. Trouver le schéma de stimulation qui produit un mouvement spécifique désiré - lever un pied, ouvrir une main, maintenir l'équilibre - devient une recherche dans un espace si vaste que les tests manuels sont tout simplement impossibles.">Consider a neural interface with many electrodes. Each electrode can stimulate at different intensities, different pulse widths, different frequencies, at different times, and in different spatial patterns. The number of possible combinations explodes exponentially. Finding the stimulation pattern that produces a specific desired movement - lifting a foot, opening a hand, maintaining balance - becomes a search through a space so vast that manual testing is simply impossible.</p>
+          <p data-en="This is where mathematical optimization becomes essential. We need algorithms that can intelligently explore this high-dimensional parameter space, learning from each test to make increasingly informed guesses about where the optimal settings lie." data-fr="C'est là que l'optimisation mathématique devient essentielle. Nous avons besoin d'algorithmes capables d'explorer intelligemment cet espace de paramètres de haute dimension, apprenant de chaque test pour faire des suppositions de plus en plus éclairées sur l'emplacement des réglages optimaux.">This is where mathematical optimization becomes essential. We need algorithms that can intelligently explore this high-dimensional parameter space, learning from each test to make increasingly informed guesses about where the optimal settings lie.</p>
+          <p data-en="One of the mathematical optimization frameworks that we like to work with a lot is Bayesian optimization based on Gaussian processes (GPBO)." data-fr="L'un des cadres d'optimisation mathématique avec lesquels nous aimons beaucoup travailler est l'optimisation bayésienne basée sur les processus gaussiens (GPBO).">One of the mathematical optimization frameworks that we like to work with a lot is Bayesian optimization based on Gaussian processes (GPBO). </p>
+
+          <figure class="research-figure">
+            <img src="GPBO.png" alt="Bayesian optimization for neurostimulation">
+            <figcaption data-en="Figure: Bayesian optimization for neurostimulation parameter tuning. GPBO usually proceeds by first testing some options at random. In this case, it wasn't initially lucky in finding an interesting area, but the overall uncertainty kept on reducing. Once an area of interest is found, it can locally intensify its search, and eventually adopt a good solution without renouncing to test some alternative options every now and then." data-fr="Figure : Optimisation bayésienne pour le réglage des paramètres de neurostimulation. GPBO procède généralement en testant d'abord quelques options au hasard. Dans ce cas, il n'a pas été initialement chanceux dans la recherche d'une zone intéressante, mais l'incertitude globale a continué à diminuer. Une fois qu'une zone d'intérêt est trouvée, il peut intensifier localement sa recherche et éventuellement adopter une bonne solution sans renoncer à tester quelques options alternatives de temps en temps.">Figure: Bayesian optimization for neurostimulation parameter tuning. GPBO usually proceeds by first testing some options at random. In this case, it wasn't initially lucky in finding an interesting area, but the overall uncertainty kept on reducing. Once an area of interest is found, it can locally intensify its search, and eventually adopt a good solution without renouncing to test some alternative options every now and then.</figcaption>
+          </figure>
+
+          <h3 data-en="Learning to Search" data-fr="Apprendre à chercher">Learning to Search</h3>
+          <p data-en="Traditional approaches to programming neurostimulation rely on clinicians or researchers manually testing parameter combinations, adjusting settings based on observed responses, and gradually converging on something that works. This process is slow, labor-intensive, and often settles on suboptimal solutions simply because there isn't time to test alternatives." data-fr="Les approches traditionnelles de programmation de la neurostimulation reposent sur des cliniciens ou des chercheurs qui testent manuellement des combinaisons de paramètres, ajustent les réglages en fonction des réponses observées et convergent progressivement vers quelque chose qui fonctionne. Ce processus est lent, exigeant en main-d'œuvre et aboutit souvent à des solutions sous-optimales simplement parce qu'il n'y a pas le temps de tester des alternatives.">Traditional approaches to programming neurostimulation rely on clinicians or researchers manually testing parameter combinations, adjusting settings based on observed responses, and gradually converging on something that works. This process is slow, labor-intensive, and often settles on suboptimal solutions simply because there isn't time to test alternatives.</p>
+          <p data-en="Our laboratory develops autonomous learning algorithms that can perform this search automatically, in real-time, as the system is being used. These algorithms treat neurostimulation tuning as a sequential decision problem: at each step, decide which parameters to test next, observe the neural or behavioral response, update the understanding of how the system behaves, and use that updated knowledge to make the next choice." data-fr="Notre laboratoire développe des algorithmes d'apprentissage autonomes capables d'effectuer cette recherche automatiquement, en temps réel, pendant l'utilisation du système. Ces algorithmes traitent le réglage de la neurostimulation comme un problème de décision séquentielle : à chaque étape, décider quels paramètres tester ensuite, observer la réponse neurale ou comportementale, mettre à jour la compréhension du comportement du système et utiliser ces connaissances actualisées pour faire le choix suivant.">Our laboratory develops autonomous learning algorithms that can perform this search automatically, in real-time, as the system is being used. These algorithms treat neurostimulation tuning as a sequential decision problem: at each step, decide which parameters to test next, observe the neural or behavioral response, update the understanding of how the system behaves, and use that updated knowledge to make the next choice.</p>
+
+          <div class="media-feature">
+            <p data-en="To learn more about these methods and how they apply to clinical practice, have a look at our appearance on the Découverte TV program on ICI Radio-Canada (French only):" data-fr="Pour en savoir plus sur ces méthodes et leur application en pratique clinique, visionnez notre passage à l'émission Découverte sur ICI Radio-Canada :">To learn more about these methods and how they apply to clinical practice, have a look at our appearance on the Découverte TV program on ICI Radio-Canada (French only):</p>
+            <a href="https://ici.radio-canada.ca/tele/decouverte/site/segments/reportage/496123/neurostimulation-intelligence-artificielle" target="_blank" class="media-image-link">
+              <img src="decouverte.png" alt="Découverte - ICI Radio-Canada">
+            </a>
+          </div>
+
+          <h3 data-en="Scaling to Complexity" data-fr="Passer à l'échelle de la complexité">Scaling to Complexity</h3>
+          <p data-en="As neural interfaces grow more sophisticated, moving from simple single-electrode systems to distributed multi-site arrays, from static protocols to adaptive closed-loop control, the optimization challenge intensifies. We're not just searching for a single best setting anymore, but for entire sequences of stimulation patterns that unfold over time, responsive to the ongoing state of neural activity." data-fr="À mesure que les interfaces neurales deviennent plus sophistiquées, passant de systèmes simples à une seule électrode à des réseaux distribués multi-sites, de protocoles statiques à un contrôle adaptatif en boucle fermée, le défi d'optimisation s'intensifie. Nous ne cherchons plus seulement un seul meilleur réglage, mais des séquences entières de schémas de stimulation qui se déploient dans le temps, réactives à l'état continu de l'activité neurale.">As neural interfaces grow more sophisticated, moving from simple single-electrode systems to distributed multi-site arrays, from static protocols to adaptive closed-loop control, the optimization challenge intensifies. We're not just searching for a single best setting anymore, but for entire sequences of stimulation patterns that unfold over time, responsive to the ongoing state of neural activity.</p>
+          <p data-en="Our research tackles these challenges by developing novel algorithmic strategies specifically tailored to the structure and constraints of neural interfaces. We work at the intersection of machine learning, control theory, and computational neuroscience. We build mathematical tools that are also practically deployable in experimental and clinical settings." data-fr="Notre recherche aborde ces défis en développant de nouvelles stratégies algorithmiques spécifiquement adaptées à la structure et aux contraintes des interfaces neurales. Nous travaillons à l'intersection de l'apprentissage automatique, de la théorie du contrôle et des neurosciences computationnelles. Nous construisons des outils mathématiques qui sont également pratiquement déployables dans des contextes expérimentaux et cliniques.">Our research tackles these challenges by developing novel algorithmic strategies specifically tailored to the structure and constraints of neural interfaces. We work at the intersection of machine learning, control theory, and computational neuroscience. We build mathematical tools that are also practically deployable in experimental and clinical settings.</p>
+
+          <h3 data-en="Open-Source Tools" data-fr="Outils open source">Open-Source Tools</h3>
+          <p data-en="Science advances fastest when methods are shared. We release our computational tools as open-source software, allowing other laboratories to apply these optimization techniques to their own neural interface research." data-fr="La science avance plus vite quand les méthodes sont partagées. Nous publions nos outils computationnels en tant que logiciels open source, permettant à d'autres laboratoires d'appliquer ces techniques d'optimisation à leurs propres recherches sur les interfaces neurales.">Science advances fastest when methods are shared. We release our computational tools as open-source software, allowing other laboratories to apply these optimization techniques to their own neural interface research.</p>
+
+          <h4 data-en="Optimization Library and Tutorials" data-fr="Bibliothèque d'optimisation et tutoriels">Optimization Library and Tutorials</h4>
+          <p data-en="Our <a href='https://github.com/mbonizzato/EduOptimNeurostim' target='_blank'><strong>EduOptimNeurostim</strong></a> library provides a complete framework for autonomous neurostimulation parameter tuning. The repository includes:" data-fr="Notre bibliothèque <a href='https://github.com/mbonizzato/EduOptimNeurostim' target='_blank'><strong>EduOptimNeurostim</strong></a> fournit un cadre complet pour le réglage autonome des paramètres de neurostimulation. Le dépôt comprend :">Our <a href="https://github.com/mbonizzato/EduOptimNeurostim" target="_blank"><strong>EduOptimNeurostim</strong></a> library provides a complete framework for autonomous neurostimulation parameter tuning. The repository includes:</p>
+          <ul>
+            <li data-en="Production-ready optimization algorithms for neural interface control" data-fr="Algorithmes d'optimisation prêts pour la production pour le contrôle d'interfaces neurales">Production-ready optimization algorithms for neural interface control</li>
+            <li data-en="Interactive tutorials that guide researchers through implementation" data-fr="Tutoriels interactifs qui guident les chercheurs à travers l'implémentation">Interactive tutorials that guide researchers through implementation</li>
+            <li data-en="Simulation environments for testing algorithms before in vivo deployment" data-fr="Environnements de simulation pour tester les algorithmes avant le déploiement in vivo">Simulation environments for testing algorithms before in vivo deployment</li>
+            <li data-en="Documented examples spanning cortical, spinal, and peripheral nerve interfaces" data-fr="Exemples documentés couvrant les interfaces corticales, spinales et des nerfs périphériques">Documented examples spanning cortical, spinal, and peripheral nerve interfaces</li>
+          </ul>
+          <p data-en="The library is designed to be accessible to neuroscientists without deep machine learning expertise while remaining flexible enough for methodological innovation." data-fr="La bibliothèque est conçue pour être accessible aux neuroscientifiques sans expertise approfondie en apprentissage automatique tout en restant suffisamment flexible pour l'innovation méthodologique.">The library is designed to be accessible to neuroscientists without deep machine learning expertise while remaining flexible enough for methodological innovation.</p>
+
+          <h4 data-en="A Consortium for Open Data" data-fr="Un consortium pour les données ouvertes">A Consortium for Open Data</h4>
+          <p data-en="Perhaps our most ambitious contribution to open science is the <a href='https://neurolibre.org/neuromosaics' target='_blank'><strong>NeuroMOSAICS consortium</strong></a>, <strong>Multi-scale Open-Source Across Interfaces Conditions & Species</strong>, a collaborative initiative to provide high-quality neurostimulation datasets to the broader scientific community. Computer scientists and mathematicians developing optimization algorithms rarely have access to real neural interface data. They work with synthetic benchmarks that can miss the complexity, noise, and biological constraints of actual neural systems." data-fr="Notre contribution la plus ambitieuse à la science ouverte est peut-être le <a href='https://neurolibre.org/neuromosaics' target='_blank'><strong>consortium NeuroMOSAICS</strong></a>, <strong>Multi-scale Open-Source Across Interfaces Conditions & Species</strong>, une initiative collaborative visant à fournir des ensembles de données de neurostimulation de haute qualité à la communauté scientifique élargie. Les informaticiens et mathématiciens développant des algorithmes d'optimisation ont rarement accès à de vraies données d'interfaces neurales. Ils travaillent avec des références synthétiques qui peuvent manquer la complexité, le bruit et les contraintes biologiques des systèmes neuraux réels.">Perhaps our most ambitious contribution to open science is the <a href="https://neurolibre.org/neuromosaics" target="_blank"><strong>NeuroMOSAICS consortium</strong></a>, <strong>Multi-scale Open-Source Across Interfaces Conditions & Species</strong>, a collaborative initiative to provide high-quality neurostimulation datasets to the broader scientific community. Computer scientists and mathematicians developing optimization algorithms rarely have access to real neural interface data. They work with synthetic benchmarks that can miss the complexity, noise, and biological constraints of actual neural systems.</p>
+          <p data-en="NeuroMOSAICS breaks down this barrier. We've established a consortium that curates and openly shares neurostimulation datasets across multiple scales, from cortical recordings in non-human primates to spinal interfaces in rodents, providing the computational research community with the real biological data they need to develop better algorithms. This cross-pollination benefits both fields: computer scientists gain access to meaningful biological benchmarks, while neuroscience benefits from state-of-the-art optimization methods developed by the broader machine learning community." data-fr="NeuroMOSAICS brise cette barrière. Nous avons établi un consortium qui conserve et partage ouvertement des ensembles de données de neurostimulation à plusieurs échelles, des enregistrements corticaux chez les primates non humains aux interfaces spinales chez les rongeurs, fournissant à la communauté de recherche computationnelle les vraies données biologiques dont elle a besoin pour développer de meilleurs algorithmes. Cette pollinisation croisée bénéficie aux deux domaines : les informaticiens accèdent à des références biologiques significatives, tandis que les neurosciences bénéficient de méthodes d'optimisation de pointe développées par la communauté plus large de l'apprentissage automatique.">NeuroMOSAICS breaks down this barrier. We've established a consortium that curates and openly shares neurostimulation datasets across multiple scales, from cortical recordings in non-human primates to spinal interfaces in rodents, providing the computational research community with the real biological data they need to develop better algorithms. This cross-pollination benefits both fields: computer scientists gain access to meaningful biological benchmarks, while neuroscience benefits from state-of-the-art optimization methods developed by the broader machine learning community.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.polymtl.ca/ge/" target="_blank" data-en="Department of Electrical Engineering - Polytechnique Montréal" data-fr="Département de génie électrique - Polytechnique Montréal">Department of Electrical Engineering - Polytechnique Montréal</a>
+        <a href="https://neurosciences.umontreal.ca/" target="_blank" data-en="Neuroscience Research Group (GRSNC) - Université de Montréal" data-fr="Groupe de recherche en neurosciences (GRSNC) - Université de Montréal">Neuroscience Research Group (GRSNC) - Université de Montréal</a>
+        <a href="https://mila.quebec/en" target="_blank">Mila - Quebec AI Institute</a>
+        <a href="https://cibmontreal.ca/en/" target="_blank" data-en="Biomedical Engineering Institute of Montreal" data-fr="Institut de génie biomédical de Montréal">Biomedical Engineering Institute of Montreal</a>
+        <a href="https://circa.openum.ca/" target="_blank" data-en="Centre for Interdisciplinary Research on Montreal" data-fr="Centre de recherche interdisciplinaire sur Montréal">CIRCA - Université de Montréal</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 sciNeurotech Lab</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // GPBO Optimization Game
+    (function() {
+      // All possible notes (white keys only for simplicity in scoring)
+      const ALL_NOTES = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5'];
+      const NOTE_TO_INDEX = {};
+      ALL_NOTES.forEach((note, i) => NOTE_TO_INDEX[note] = i);
+
+      // Game state
+      let targetSequence = [];
+      let humanSequence = [];
+      let humanBestScore = 0;
+      let gpboBestScore = 0;
+      let gpboIterations = 0;
+      let gpboRunning = false;
+      let gpboResults = [];
+      let answerRevealed = false;
+
+      // Audio context for piano sounds
+      let audioContext = null;
+
+      // DOM elements
+      const humanScoreBox = document.getElementById('humanScoreBox');
+      const humanSequenceEl = document.getElementById('humanSequence');
+      const humanBestScoreEl = document.getElementById('humanBestScore');
+      const gpboBestScoreEl = document.getElementById('gpboBestScore');
+      const gpboIterationsEl = document.getElementById('gpboIterations');
+      const gpboCanvas = document.getElementById('gpboCanvas');
+      const gpboCtx = gpboCanvas.getContext('2d');
+      const gpboPlayBtn = document.getElementById('gpboPlayBtn');
+      const newGameBtn = document.getElementById('newGameBtn');
+      const revealBtn = document.getElementById('revealBtn');
+      const revealText = document.getElementById('revealText');
+      const pianoKeys = document.querySelectorAll('.piano-key');
+
+
+      // Initialize audio context
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+
+      // Play a note using Web Audio API
+      function playNote(note) {
+        initAudio();
+        const frequencies = {
+          'C4': 261.63, 'C#4': 277.18, 'D4': 293.66, 'D#4': 311.13,
+          'E4': 329.63, 'F4': 349.23, 'F#4': 369.99, 'G4': 392.00,
+          'G#4': 415.30, 'A4': 440.00, 'A#4': 466.16, 'B4': 493.88,
+          'C5': 523.25, 'C#5': 554.37, 'D5': 587.33, 'D#5': 622.25,
+          'E5': 659.25, 'F5': 698.46
+        };
+
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequencies[note] || 440;
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.5);
+      }
+
+      // Calculate score based on distance from target
+      function calculateScore(sequence) {
+        if (sequence.length !== 2 || targetSequence.length !== 2) return 0;
+
+        const idx1 = NOTE_TO_INDEX[sequence[0]];
+        const idx2 = NOTE_TO_INDEX[sequence[1]];
+        const targetIdx1 = NOTE_TO_INDEX[targetSequence[0]];
+        const targetIdx2 = NOTE_TO_INDEX[targetSequence[1]];
+
+        if (idx1 === undefined || idx2 === undefined) return 0;
+
+        // Calculate Euclidean distance
+        const distance = Math.sqrt(Math.pow(idx1 - targetIdx1, 2) + Math.pow(idx2 - targetIdx2, 2));
+
+        // Saturate at score 1 for distance >= 5
+        if (distance >= 5) {
+          return 1;
+        }
+
+        // For distance < 5, scale linearly from 10 (distance=0) to 1 (distance=5)
+        const score = Math.round(10 - (distance / 5) * 9);
+        return Math.max(1, score);
+      }
+
+      // Generate random target sequence
+      function generateTarget() {
+        const idx1 = Math.floor(Math.random() * ALL_NOTES.length);
+        const idx2 = Math.floor(Math.random() * ALL_NOTES.length);
+        targetSequence = [ALL_NOTES[idx1], ALL_NOTES[idx2]];
+      }
+
+      // Draw the GPBO grid
+      function drawGrid() {
+        const width = gpboCanvas.width;
+        const height = gpboCanvas.height;
+        const cellWidth = width / ALL_NOTES.length;
+        const cellHeight = height / ALL_NOTES.length;
+
+        // Clear canvas
+        gpboCtx.fillStyle = 'white';
+        gpboCtx.fillRect(0, 0, width, height);
+
+        // Draw grid lines
+        gpboCtx.strokeStyle = '#e0e0e0';
+        gpboCtx.lineWidth = 1;
+
+        for (let i = 0; i <= ALL_NOTES.length; i++) {
+          // Vertical lines
+          gpboCtx.beginPath();
+          gpboCtx.moveTo(i * cellWidth, 0);
+          gpboCtx.lineTo(i * cellWidth, height);
+          gpboCtx.stroke();
+
+          // Horizontal lines
+          gpboCtx.beginPath();
+          gpboCtx.moveTo(0, i * cellHeight);
+          gpboCtx.lineTo(width, i * cellHeight);
+          gpboCtx.stroke();
+        }
+
+        // Draw results
+        gpboResults.forEach(result => {
+          const x = result.note1Idx * cellWidth;
+          const y = result.note2Idx * cellHeight;
+          if (result.score === 10) {
+            // Green square for score 10
+            gpboCtx.fillStyle = '#22c55e';
+          } else {
+            const grayValue = Math.round((1 - result.score / 10) * 255);
+            gpboCtx.fillStyle = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+          }
+          gpboCtx.fillRect(x, y, cellWidth, cellHeight);
+        });
+
+        // Draw blue spot for revealed answer
+        if (answerRevealed && targetSequence.length === 2) {
+          const targetIdx1 = NOTE_TO_INDEX[targetSequence[0]];
+          const targetIdx2 = NOTE_TO_INDEX[targetSequence[1]];
+          if (targetIdx1 !== undefined && targetIdx2 !== undefined) {
+            const x = targetIdx1 * cellWidth + cellWidth / 2;
+            const y = targetIdx2 * cellHeight + cellHeight / 2;
+            const radius = Math.min(cellWidth, cellHeight) / 3;
+            gpboCtx.beginPath();
+            gpboCtx.arc(x, y, radius, 0, Math.PI * 2);
+            gpboCtx.fillStyle = '#3182ce';
+            gpboCtx.fill();
+            gpboCtx.strokeStyle = '#1a365d';
+            gpboCtx.lineWidth = 2;
+            gpboCtx.stroke();
+          }
+        }
+      }
+
+      // Handle piano key click
+      function handleKeyClick(note) {
+        playNote(note);
+
+        // Add visual feedback
+        const keyEl = document.querySelector(`[data-note="${note}"]`);
+        keyEl.classList.add('active');
+        setTimeout(() => keyEl.classList.remove('active'), 150);
+
+        // Clear previous selection highlights if starting fresh
+        if (humanSequence.length === 0) {
+          pianoKeys.forEach(k => k.classList.remove('selected'));
+        }
+
+        // Add to sequence
+        if (humanSequence.length < 2) {
+          humanSequence.push(note);
+          keyEl.classList.add('selected');
+
+          // Update display
+          if (humanSequence.length === 1) {
+            humanSequenceEl.textContent = `${humanSequence[0]} --`;
+          } else {
+            humanSequenceEl.textContent = `${humanSequence[0]} ${humanSequence[1]}`;
+
+            // Calculate and show score
+            const score = calculateScore(humanSequence);
+            humanScoreBox.textContent = score;
+
+            if (score > humanBestScore) {
+              humanBestScore = score;
+              humanBestScoreEl.textContent = humanBestScore;
+            }
+
+            // Reset after a delay
+            setTimeout(() => {
+              humanSequence = [];
+              humanSequenceEl.textContent = '-- --';
+              pianoKeys.forEach(k => k.classList.remove('selected'));
+            }, 1500);
+          }
+        }
+      }
+
+      // GPBO internal maps
+      let sumMap = [];
+      let evidenceMap = [];
+      const K_HYPERPARAMETER = 5.5; // Exploration vs exploitation trade-off
+
+      // Initialize maps to zeros
+      function initMaps() {
+        const n = ALL_NOTES.length;
+        sumMap = Array(n).fill(null).map(() => Array(n).fill(0));
+        evidenceMap = Array(n).fill(null).map(() => Array(n).fill(0));
+      }
+
+      // Update maps after a query
+      function updateMaps(queryIdx1, queryIdx2, result) {
+        const n = ALL_NOTES.length;
+        const weights = { 0: 1.0, 1: 0.6, 2: 0.3, 3: 0.2, 4: 0.1};
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            const dist = Math.abs(i - queryIdx1) + Math.abs(j - queryIdx2);
+            if (dist <= 4) {
+              const weight = weights[dist];
+              sumMap[i][j] += weight * result;
+              evidenceMap[i][j] += weight;
+            }
+          }
+        }
+      }
+
+      // Compute acquisition function and select next query
+      function selectNextQuery(previousQueries) {
+        const n = ALL_NOTES.length;
+
+        // Build a set of previously queried positions
+        const queriedSet = new Set();
+        if (previousQueries) {
+          previousQueries.forEach(q => queriedSet.add(`${q.note1Idx},${q.note2Idx}`));
+        }
+
+        // Collect all candidates with their acquisition values
+        let allCandidates = [];
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            // Skip already queried positions
+            if (queriedSet.has(`${i},${j}`)) continue;
+
+            let acq;
+            if (sumMap[i][j] === 0 && evidenceMap[i][j] === 0) {
+              // Unvisited region: high uncertainty bonus
+              acq = K_HYPERPARAMETER * 1; // s = 10^0 = 1 when evidence is 0
+            } else {
+              const m = sumMap[i][j] / evidenceMap[i][j]; // Mean estimate
+              const s = Math.pow(10, -evidenceMap[i][j]); // Uncertainty (decreases with evidence)
+              acq = m + K_HYPERPARAMETER * s;
+            }
+
+            allCandidates.push({ i, j, acq });
+          }
+        }
+
+        // Sort by acquisition value descending
+        allCandidates.sort((a, b) => b.acq - a.acq);
+
+        // Get all candidates with the best acquisition value
+        const maxAcq = allCandidates[0].acq;
+        const bestCandidates = allCandidates.filter(c => c.acq === maxAcq);
+
+        // If multiple candidates have same acquisition value, pick randomly among them
+        const selected = bestCandidates[Math.floor(Math.random() * bestCandidates.length)];
+        return { note1Idx: selected.i, note2Idx: selected.j };
+      }
+
+
+      // Run GPBO algorithm
+      async function runGPBO() {
+        if (gpboRunning) return;
+
+        gpboRunning = true;
+        gpboPlayBtn.disabled = true;
+        gpboResults = [];
+        gpboBestScore = 0;
+        gpboIterations = 0;
+        gpboBestScoreEl.textContent = '0';
+        gpboIterationsEl.textContent = '0 / 12';
+        initMaps();
+        drawGrid();
+
+        for (let i = 0; i < 12; i++) {
+          let note1Idx, note2Idx;
+
+          if (i === 0) {
+            // First query: random
+            note1Idx = Math.floor(Math.random() * ALL_NOTES.length);
+            note2Idx = Math.floor(Math.random() * ALL_NOTES.length);
+          } else {
+            // Subsequent queries: use acquisition function, passing previous queries to avoid repeats
+            const nextQuery = selectNextQuery(gpboResults);
+            note1Idx = nextQuery.note1Idx;
+            note2Idx = nextQuery.note2Idx;
+          }
+
+          const sequence = [ALL_NOTES[note1Idx], ALL_NOTES[note2Idx]];
+
+          // Calculate score
+          const score = calculateScore(sequence);
+
+          // Update internal maps
+          updateMaps(note1Idx, note2Idx, score);
+
+          // Store result for visualization
+          gpboResults.push({ note1Idx, note2Idx, score });
+
+          // Update best score
+          if (score > gpboBestScore) {
+            gpboBestScore = score;
+            gpboBestScoreEl.textContent = gpboBestScore;
+          }
+
+          // Update iterations
+          gpboIterations = i + 1;
+          gpboIterationsEl.textContent = `${gpboIterations} / 12`;
+
+          // Play notes
+          playNote(sequence[0]);
+          await new Promise(r => setTimeout(r, 200));
+          playNote(sequence[1]);
+
+          // Draw grid
+          drawGrid();
+
+          // Wait before next iteration
+          await new Promise(r => setTimeout(r, 500));
+        }
+
+        gpboRunning = false;
+        gpboPlayBtn.disabled = false;
+      }
+
+      // Start new game
+      function newGame() {
+        generateTarget();
+        humanSequence = [];
+        humanBestScore = 0;
+        gpboBestScore = 0;
+        gpboIterations = 0;
+        gpboResults = [];
+        answerRevealed = false;
+
+        humanScoreBox.textContent = '--';
+        humanSequenceEl.textContent = '-- --';
+        humanBestScoreEl.textContent = '0';
+        gpboBestScoreEl.textContent = '0';
+        gpboIterationsEl.textContent = '0 / 12';
+        revealText.style.display = 'none';
+
+        pianoKeys.forEach(k => k.classList.remove('selected'));
+        drawGrid();
+      }
+
+      // Reveal answer
+      function revealAnswer() {
+        const lang = localStorage.getItem('selectedLanguage') || 'en';
+        if (lang === 'fr') {
+          revealText.textContent = `la réponse était : ${targetSequence[0]} ${targetSequence[1]}`;
+        } else {
+          revealText.textContent = `The answer was: ${targetSequence[0]} ${targetSequence[1]}`;
+        }
+        revealText.style.display = 'block';
+        answerRevealed = true;
+        drawGrid(); // Redraw to show blue spot
+      }
+
+      // Keyboard support
+      const keyMap = {
+        'a': 'C4', 'w': 'C#4', 's': 'D4', 'e': 'D#4', 'd': 'E4',
+        'f': 'F4', 't': 'F#4', 'g': 'G4', 'y': 'G#4', 'h': 'A4',
+        'u': 'A#4', 'j': 'B4', 'k': 'C5', 'o': 'C#5', 'l': 'D5',
+        'p': 'D#5', ';': 'E5', "'": 'F5'
+      };
+
+      document.addEventListener('keydown', (e) => {
+        const note = keyMap[e.key.toLowerCase()];
+        if (note && document.activeElement.tagName !== 'INPUT') {
+          handleKeyClick(note);
+        }
+      });
+
+      // Event listeners
+      pianoKeys.forEach(key => {
+        key.addEventListener('click', () => {
+          const note = key.getAttribute('data-note');
+          handleKeyClick(note);
+        });
+      });
+
+      gpboPlayBtn.addEventListener('click', runGPBO);
+      newGameBtn.addEventListener('click', newGame);
+      revealBtn.addEventListener('click', revealAnswer);
+
+      // Initialize
+      newGame();
+    })();
+  </script>
+</body>
+</html>

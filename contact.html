@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | sciNeurotech Lab</title>
+  <meta name="description" content="Contact information for sciNeurotech Lab at Polytechnique Montréal">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="Logo_Poly_desktop.png" alt="Polytechnique Montréal" class="institution-logo">
+          <div class="lab-title">
+            <span class="lab-name">sciNeurotech Lab</span>
+            <a href="https://www.polymtl.ca/expertises/en/bonizzato-marco" target="_blank" class="lab-pi">Marco Bonizzato</a>
+          </div>
+        </a>
+        <div class="lang-switch">
+          <button id="btn-en" class="active" onclick="setLanguage('en')">EN</button>
+          <button id="btn-fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="container">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <ul id="nav-menu">
+          <li><a href="index.html" data-en="Home" data-fr="Accueil">Home</a></li>
+          <li class="dropdown">
+            <a href="index.html#research" data-en="Research" data-fr="Recherche">Research</a>
+            <div class="dropdown-menu">
+              <a href="research-neurostim.html" data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</a>
+              <a href="research-maths.html" data-en="Mathematical Optimization" data-fr="Optimisation mathématique">Mathematical Optimization</a>
+              <a href="research-bci.html" data-en="Brain-Computer Interfaces" data-fr="Interfaces cerveau-machine">Brain-Computer Interfaces</a>
+            </div>
+          </li>
+          <li><a href="publications.html" data-en="Publications" data-fr="Publications">Publications</a></li>
+          <li><a href="people.html" data-en="People" data-fr="Équipe">People</a></li>
+          <li><a href="positions.html" data-en="Positions" data-fr="Postes">Positions</a></li>
+          <li><a href="contact.html" class="active" data-en="Contact" data-fr="Contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-title">
+        <h1 data-en="Contact" data-fr="Contact">Contact</h1>
+      </div>
+
+      <div class="page-content-simple">
+        <div class="contact-content">
+
+          <div class="contact-info">
+            <h3 data-en="Location" data-fr="Emplacement">Location</h3>
+            <div class="address">
+              <p><strong>sciNeurotech Lab</strong>
+              <br>Département de génie électrique - Polytechnique Montréal
+              <br>Département de neurosciences - Université de Montréal
+              <br>2500 Chemin de Polytechnique, M-5414
+              <br>Montréal, QC H3T 1J4
+              <br>Canada</p>
+            </div>
+
+            <h3 data-en="Email" data-fr="Courriel">Email</h3>
+            <p class="email">
+              <a href="mailto:marco.bonizzato@polymtl.ca">marco.bonizzato@polymtl.ca</a>
+            </p>
+
+            <h3 data-en="For Prospective Students" data-fr="Pour les futurs étudiants">For Prospective Students</h3>
+            <p data-en="If you are interested in joining the lab, please send an email with:" data-fr="Si vous êtes intéressé à rejoindre le laboratoire, veuillez envoyer un courriel avec:">If you are interested in joining the lab, please send an email with:</p>
+            <ul style="margin-left: 20px; margin-top: 10px; color: #718096;">
+              <li data-en="Your CV" data-fr="Votre CV">Your CV</li>
+              <li data-en="A brief description of your research interests" data-fr="Une brève description de vos intérêts de recherche">A description of your research interests</li>
+              <li data-en="Your academic transcripts" data-fr="Vos relevés de notes">Your academic transcripts</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="contact-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2795.5!2d-73.6134!3d45.5048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc919f2a0b3e3a5%3A0x8c8b8e4a9c0f5b7c!2s2960%20Chem.%20de%20la%20Tour%2C%20Montr%C3%A9al%2C%20QC!5e0!3m2!1sen!2sca!4v1703500000000!5m2!1sen!2sca"
+                width="100%"
+                height="300"
+                style="border:0; border-radius: 10px;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div style="margin-top: 20px; padding: 20px; background-color: #f7fafc; border-radius: 10px;">
+              <h4 data-en="Getting Here" data-fr="Comment nous rejoindre">Getting Here</h4>
+              <p style="margin-top: 10px; color: #718096; font-size: 0.95rem;" data-en="Polytechnique Montréal is located on the north slope of Mount Royal. The campus is accessible by metro (Université-de-Montréal station, blue line) and multiple bus routes." data-fr="Polytechnique Montréal est situé sur le versant nord du Mont-Royal. Le campus est accessible par métro (station Université-de-Montréal, ligne bleue) et plusieurs lignes d'autobus.">Polytechnique Montréal is located on the north slope of Mount Royal. The campus is accessible by metro (Université-de-Montréal station, blue line) and multiple bus routes.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="institution-image">
+          <img src="polytechnique_pic.jpg" alt="Polytechnique Montréal">
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.polymtl.ca/ge/" target="_blank" data-en="Department of Electrical Engineering - Polytechnique Montréal" data-fr="Département de génie électrique - Polytechnique Montréal">Department of Electrical Engineering - Polytechnique Montréal</a>
+        <a href="https://neurosciences.umontreal.ca/" target="_blank" data-en="Neuroscience Research Group (GRSNC) - Université de Montréal" data-fr="Groupe de recherche en neurosciences (GRSNC) - Université de Montréal">Neuroscience Research Group (GRSNC) - Université de Montréal</a>
+        <a href="https://mila.quebec/en" target="_blank">Mila - Quebec AI Institute</a>
+        <a href="https://cibmontreal.ca/en/" target="_blank" data-en="Biomedical Engineering Institute of Montreal" data-fr="Institut de génie biomédical de Montréal">Biomedical Engineering Institute of Montreal</a>
+        <a href="https://circa.openum.ca/" target="_blank" data-en="Centre for Interdisciplinary Research on Montreal" data-fr="Centre de recherche interdisciplinaire sur Montréal">CIRCA - Université de Montréal</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 sciNeurotech Lab</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
