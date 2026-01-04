@@ -1741,17 +1741,16 @@ footer {
     transform-origin: center;
   }
 
-  #gpboCanvas {
-    width: 250px;
-    height: 250px;
+  .gpbo-algorithm-side {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .y-axis-notes {
-    height: 250px;
-  }
-
-  .x-axis-notes {
-    width: 250px;
+  .gpbo-grid-wrapper {
+    transform: scale(0.9);
+    transform-origin: center;
   }
 }
 
@@ -1765,16 +1764,8 @@ footer {
     padding: 15px;
   }
 
-  #gpboCanvas {
-    width: 200px;
-    height: 200px;
-  }
-
-  .y-axis-notes {
-    height: 200px;
-  }
-
-  .x-axis-notes {
-    width: 200px;
+  .gpbo-grid-wrapper {
+    transform: scale(0.8);
+    transform-origin: center;
   }
 }
