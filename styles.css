@@ -1224,12 +1224,16 @@ footer {
 }
 
 @media (max-width: 768px) {
+  header {
+    position: relative;
+  }
+
   .menu-toggle {
     display: block;
     position: absolute;
     right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 20px;
+    z-index: 1001;
   }
 
   .main-nav .container {
@@ -1270,6 +1274,11 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+
+  .research-card-box {
+    width: 100%;
+    max-width: 300px;
   }
 
   .hero-minimal {
@@ -1727,7 +1736,7 @@ footer {
     align-items: center;
   }
 
-  .piano-keys {
+  .piano-container {
     transform: scale(0.85);
     transform-origin: center;
   }
@@ -1736,10 +1745,18 @@ footer {
     width: 250px;
     height: 250px;
   }
+
+  .y-axis-notes {
+    height: 250px;
+  }
+
+  .x-axis-notes {
+    width: 250px;
+  }
 }
 
 @media (max-width: 480px) {
-  .piano-keys {
+  .piano-container {
     transform: scale(0.7);
     transform-origin: center;
   }
@@ -1751,5 +1768,13 @@ footer {
   #gpboCanvas {
     width: 200px;
     height: 200px;
+  }
+
+  .y-axis-notes {
+    height: 200px;
+  }
+
+  .x-axis-notes {
+    width: 200px;
   }
 }
