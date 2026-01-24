@@ -52,6 +52,27 @@
         <h1 data-en="Neurostimulation" data-fr="Neurostimulation">Neurostimulation</h1>
       </div>
 
+      <!-- Neural Pulse Game -->
+      <div class="neurostim-game-container">
+        <h4 data-en="Neural Pulse Game" data-fr="Jeu Neural Pulse">Neural Pulse Game</h4>
+        <p class="neurostim-instructions" data-en="Press Q, W, E, R when pulses reach the activation zone. Time your stimulation to target the correct limb!" data-fr="Appuyez sur Q, W, E, R lorsque les impulsions atteignent la zone d'activation. Synchronisez votre stimulation pour cibler le bon membre!">Press Q, W, E, R when pulses reach the activation zone. Time your stimulation to target the correct limb!</p>
+
+        <div class="neurostim-game-wrapper">
+          <canvas id="neurostimCanvas" width="400" height="320"></canvas>
+        </div>
+
+        <div class="neurostim-key-guide">
+          <div class="neurostim-key-item"><span class="neurostim-key-badge key-q">Q</span> <span data-en="L Arm" data-fr="Bras G">L Arm</span></div>
+          <div class="neurostim-key-item"><span class="neurostim-key-badge key-w">W</span> <span data-en="L Leg" data-fr="Jambe G">L Leg</span></div>
+          <div class="neurostim-key-item"><span class="neurostim-key-badge key-e">E</span> <span data-en="R Leg" data-fr="Jambe D">R Leg</span></div>
+          <div class="neurostim-key-item"><span class="neurostim-key-badge key-r">R</span> <span data-en="R Arm" data-fr="Bras D">R Arm</span></div>
+        </div>
+
+        <div class="neurostim-controls">
+          <button id="neurostimStartBtn" class="neurostim-btn" data-en="Start Game" data-fr="Commencer">Start Game</button>
+        </div>
+      </div>
+
       <div class="page-content-simple">
         <div class="research-detail">
           <h3 data-en="Understanding Neurostimulation" data-fr="Comprendre la neurostimulation">Understanding Neurostimulation</h3>
@@ -93,5 +114,505 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Neural Pulse Game
+    //
+    // Credits:
+    // Neuron icons created by photo3idea_studio - Flaticon
+    // https://www.flaticon.com/free-icons/neuron
+    //
+    (function() {
+      // Polyfill for roundRect (for older browsers)
+      if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+          if (w < 2 * r) r = w / 2;
+          if (h < 2 * r) r = h / 2;
+          this.moveTo(x + r, y);
+          this.arcTo(x + w, y, x + w, y + h, r);
+          this.arcTo(x + w, y + h, x, y + h, r);
+          this.arcTo(x, y + h, x, y, r);
+          this.arcTo(x, y, x + w, y, r);
+          this.closePath();
+          return this;
+        };
+      }
+
+      // Game configuration
+      const TRACK_COLORS = ['#1a365d', '#2c5282', '#4299e1', '#90cdf4'];
+      const TRACK_KEYS = ['q', 'w', 'e', 'r'];
+      const TRACK_LABELS = ['Q', 'W', 'E', 'R'];
+      const LIMB_LABELS = ['L Arm', 'L Leg', 'R Leg', 'R Arm'];
+      const CANVAS_WIDTH = 400;
+      const CANVAS_HEIGHT = 320;
+      const TRACK_COUNT = 4;
+      const TRACK_WIDTH = 70;
+      const TRACK_GAP = 20;
+      const PULSE_HEIGHT = 30;
+      const PULSE_WIDTH = 50;
+      const HIT_ZONE_HEIGHT = 60;
+      const HIT_ZONE_Y = CANVAS_HEIGHT - HIT_ZONE_HEIGHT - 30;
+      const PULSE_SPEED = 3;
+      const SPAWN_INTERVAL_MIN = 600;
+      const SPAWN_INTERVAL_MAX = 1200;
+      const GAME_DURATION = 60;
+      const HIT_TOLERANCE = 40;
+
+      // Game state
+      let gameRunning = false;
+      let score = 0;
+      let combo = 0;
+      let maxCombo = 0;
+      let timeRemaining = GAME_DURATION;
+      let pulses = [];
+      let lastSpawnTime = 0;
+      let nextSpawnInterval = 0;
+      let animationId = null;
+      let timerInterval = null;
+      let audioContext = null;
+
+      // DOM elements
+      const canvas = document.getElementById('neurostimCanvas');
+      const ctx = canvas.getContext('2d');
+      const startBtn = document.getElementById('neurostimStartBtn');
+
+      // Load neuron image for hit effects
+      const neuronImg = new Image();
+      neuronImg.src = 'neuron.png';
+
+      // Calculate track positions (centered)
+      const totalWidth = TRACK_COUNT * TRACK_WIDTH + (TRACK_COUNT - 1) * TRACK_GAP;
+      const startX = (CANVAS_WIDTH - totalWidth) / 2;
+
+      function getTrackX(trackIndex) {
+        return startX + trackIndex * (TRACK_WIDTH + TRACK_GAP);
+      }
+
+      // Initialize audio
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+
+      // Play beep sound
+      function playBeep(frequency = 660, duration = 0.1) {
+        initAudio();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.value = frequency;
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + duration);
+      }
+
+
+      // Get combo multiplier
+      function getComboMultiplier() {
+        if (combo >= 30) return 10;
+        if (combo >= 20) return 5;
+        if (combo >= 10) return 3;
+        if (combo >= 5) return 2;
+        return 1;
+      }
+
+      // Combo flash state
+      let comboFlashText = '';
+      let comboFlashAlpha = 0;
+
+      // Create a new pulse
+      function createPulse() {
+        const track = Math.floor(Math.random() * TRACK_COUNT);
+        return {
+          track: track,
+          y: -PULSE_HEIGHT,
+          hit: false,
+          missed: false
+        };
+      }
+
+      // Draw the game
+      function draw() {
+        // Clear canvas with background
+        ctx.fillStyle = '#6b7280';
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+        // Draw tracks
+        for (let i = 0; i < TRACK_COUNT; i++) {
+          const x = getTrackX(i);
+
+          // Track background (darker)
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+          ctx.fillRect(x, 0, TRACK_WIDTH, CANVAS_HEIGHT);
+
+          // Track border
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(x, 0, TRACK_WIDTH, CANVAS_HEIGHT);
+        }
+
+        // Draw hit zone
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.fillRect(0, HIT_ZONE_Y, CANVAS_WIDTH, HIT_ZONE_HEIGHT);
+
+        // Draw hit zone line
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, HIT_ZONE_Y + HIT_ZONE_HEIGHT / 2);
+        ctx.lineTo(CANVAS_WIDTH, HIT_ZONE_Y + HIT_ZONE_HEIGHT / 2);
+        ctx.stroke();
+
+        // Draw body part icons at bottom (larger, can invade hit zone)
+        const iconRadius = 24;
+        for (let i = 0; i < TRACK_COUNT; i++) {
+          const cx = getTrackX(i) + TRACK_WIDTH / 2;
+          const cy = CANVAS_HEIGHT - 28;
+
+          // Background circle
+          ctx.fillStyle = TRACK_COLORS[i];
+          ctx.beginPath();
+          ctx.arc(cx, cy, iconRadius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Draw emoji
+          ctx.font = '24px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          ctx.save();
+          if (i === 0) {
+            // Left arm - 🦾 as-is (points left naturally)
+            ctx.fillText('🦾', cx, cy);
+          } else if (i === 1) {
+            // Left leg - 🦿 flipped
+            ctx.translate(cx, cy);
+            ctx.scale(-1, 1);
+            ctx.fillText('🦿', 0, 0);
+          } else if (i === 2) {
+            // Right leg - 🦿 as-is
+            ctx.fillText('🦿', cx, cy);
+          } else {
+            // Right arm - 🦾 flipped
+            ctx.translate(cx, cy);
+            ctx.scale(-1, 1);
+            ctx.fillText('🦾', 0, 0);
+          }
+          ctx.restore();
+        }
+
+        // Draw pulses
+        pulses.forEach(pulse => {
+          if (pulse.hit || pulse.missed) return;
+
+          const x = getTrackX(pulse.track) + (TRACK_WIDTH - PULSE_WIDTH) / 2;
+
+          // Pulse glow
+          ctx.shadowColor = TRACK_COLORS[pulse.track];
+          ctx.shadowBlur = 10;
+
+          // Pulse body
+          ctx.fillStyle = TRACK_COLORS[pulse.track];
+          ctx.beginPath();
+          ctx.roundRect(x, pulse.y, PULSE_WIDTH, PULSE_HEIGHT, 8);
+          ctx.fill();
+
+          // Reset shadow
+          ctx.shadowBlur = 0;
+
+          // Pulse highlight
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+          ctx.beginPath();
+          ctx.roundRect(x + 5, pulse.y + 3, PULSE_WIDTH - 10, PULSE_HEIGHT / 3, 4);
+          ctx.fill();
+        });
+
+        // Draw hit effects
+        pulses.forEach(pulse => {
+          if (pulse.hitEffect > 0) {
+            const x = getTrackX(pulse.track);
+            // Draw green glow background
+            ctx.fillStyle = `rgba(34, 197, 94, ${pulse.hitEffect * 0.3})`;
+            ctx.fillRect(x, HIT_ZONE_Y, TRACK_WIDTH, HIT_ZONE_HEIGHT);
+            // Draw neuron image centered in hit zone
+            if (neuronImg.complete) {
+              ctx.globalAlpha = pulse.hitEffect;
+              const imgSize = 50;
+              const imgX = x + (TRACK_WIDTH - imgSize) / 2;
+              const imgY = HIT_ZONE_Y + (HIT_ZONE_HEIGHT - imgSize) / 2;
+              ctx.drawImage(neuronImg, imgX, imgY, imgSize, imgSize);
+              ctx.globalAlpha = 1.0;
+            }
+            pulse.hitEffect -= 0.12;  // Fast fade out
+          }
+          if (pulse.missEffect) {
+            ctx.fillStyle = `rgba(239, 68, 68, ${pulse.missEffect})`;
+            const x = getTrackX(pulse.track);
+            ctx.fillRect(x, HIT_ZONE_Y, TRACK_WIDTH, HIT_ZONE_HEIGHT);
+            pulse.missEffect -= 0.05;
+          }
+        });
+
+        // Draw score/combo/time overlay
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textBaseline = 'top';
+
+        // Score - top left
+        ctx.textAlign = 'left';
+        ctx.fillText('Score: ' + score, 10, 10);
+
+        // Combo - top center
+        ctx.textAlign = 'center';
+        ctx.fillText('x' + getComboMultiplier(), CANVAS_WIDTH / 2, 10);
+
+        // Time - top right
+        ctx.textAlign = 'right';
+        ctx.fillText(timeRemaining + 's', CANVAS_WIDTH - 10, 10);
+
+        // Draw combo flash (center of screen)
+        if (comboFlashAlpha > 0) {
+          ctx.fillStyle = `rgba(255, 255, 255, ${comboFlashAlpha})`;
+          ctx.font = 'bold 48px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(comboFlashText, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 20);
+          comboFlashAlpha -= 0.03;
+        }
+      }
+
+      // Update game state
+      function update(timestamp) {
+        if (!gameRunning) return;
+
+        // Spawn new pulses
+        if (timestamp - lastSpawnTime > nextSpawnInterval) {
+          pulses.push(createPulse());
+          lastSpawnTime = timestamp;
+          nextSpawnInterval = SPAWN_INTERVAL_MIN + Math.random() * (SPAWN_INTERVAL_MAX - SPAWN_INTERVAL_MIN);
+        }
+
+        // Update pulse positions
+        pulses.forEach(pulse => {
+          if (!pulse.hit && !pulse.missed) {
+            pulse.y += PULSE_SPEED;
+
+            // Check if pulse was missed (passed hit zone)
+            if (pulse.y > HIT_ZONE_Y + HIT_ZONE_HEIGHT + HIT_TOLERANCE) {
+              pulse.missed = true;
+              pulse.missEffect = 0.5;
+              combo = 0;
+              updateDisplay();
+            }
+          }
+        });
+
+        // Clean up old pulses
+        pulses = pulses.filter(p => p.y < CANVAS_HEIGHT + 50 || p.hitEffect > 0 || p.missEffect > 0);
+      }
+
+      // Game loop
+      function gameLoop(timestamp) {
+        update(timestamp);
+        draw();
+
+        if (gameRunning) {
+          animationId = requestAnimationFrame(gameLoop);
+        }
+      }
+
+      // Handle key press
+      function handleKeyPress(event) {
+        if (!gameRunning) return;
+
+        const key = event.key.toLowerCase();
+        const trackIndex = TRACK_KEYS.indexOf(key);
+
+        if (trackIndex === -1) return;
+
+        // Find pulse in hit zone for this track
+        const hitZoneCenter = HIT_ZONE_Y + HIT_ZONE_HEIGHT / 2;
+        let hitPulse = null;
+
+        for (const pulse of pulses) {
+          if (pulse.track === trackIndex && !pulse.hit && !pulse.missed) {
+            const pulseCenter = pulse.y + PULSE_HEIGHT / 2;
+            if (Math.abs(pulseCenter - hitZoneCenter) < HIT_TOLERANCE) {
+              hitPulse = pulse;
+              break;
+            }
+          }
+        }
+
+        if (hitPulse) {
+          // Successful hit
+          hitPulse.hit = true;
+          hitPulse.hitEffect = 0.8;
+
+          const oldMultiplier = getComboMultiplier();
+          combo++;
+          if (combo > maxCombo) maxCombo = combo;
+          const newMultiplier = getComboMultiplier();
+
+          // Flash combo if tier changed
+          if (newMultiplier > oldMultiplier) {
+            comboFlashText = 'x' + newMultiplier;
+            comboFlashAlpha = 1.0;
+          }
+
+          score += 100 * newMultiplier;
+
+          playBeep(440 + trackIndex * 110, 0.1);
+          updateDisplay();
+        } else {
+          // Missed (no pulse in zone)
+          combo = 0;
+          updateDisplay();
+
+          // Visual feedback for wrong press
+          const fakePulse = { track: trackIndex, missEffect: 0.3 };
+          pulses.push(fakePulse);
+          setTimeout(() => {
+            const idx = pulses.indexOf(fakePulse);
+            if (idx > -1) pulses.splice(idx, 1);
+          }, 300);
+        }
+      }
+
+      // Update display (now drawn on canvas in draw())
+      function updateDisplay() {
+        // Stats are rendered directly on canvas
+      }
+
+      // Start game
+      function startGame() {
+        initAudio();
+
+        gameRunning = true;
+        score = 0;
+        combo = 0;
+        maxCombo = 0;
+        timeRemaining = GAME_DURATION;
+        pulses = [];
+        lastSpawnTime = 0;
+        nextSpawnInterval = 500;
+
+        updateDisplay();
+        startBtn.disabled = true;
+
+        // Start timer
+        timerInterval = setInterval(() => {
+          timeRemaining--;
+
+          if (timeRemaining <= 0) {
+            endGame();
+          }
+        }, 1000);
+
+        // Start game loop
+        animationId = requestAnimationFrame(gameLoop);
+      }
+
+      // End game
+      function endGame() {
+        gameRunning = false;
+
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+
+        startBtn.disabled = false;
+
+        // Draw final screen
+        draw();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 32px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Game Over', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 - 40);
+
+        ctx.font = '20px sans-serif';
+        ctx.fillText('Score: ' + score, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 10);
+        ctx.fillText('Max Combo: x' + getComboMultiplierForCombo(maxCombo), CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 45);
+      }
+
+      function getComboMultiplierForCombo(c) {
+        if (c >= 30) return 10;
+        if (c >= 20) return 5;
+        if (c >= 10) return 3;
+        if (c >= 5) return 2;
+        return 1;
+      }
+
+      // Handle click/touch on canvas
+      function handleCanvasClick(event) {
+        if (!gameRunning) return;
+
+        event.preventDefault();
+
+        // Get click position relative to canvas
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = CANVAS_WIDTH / rect.width;
+        const scaleY = CANVAS_HEIGHT / rect.height;
+
+        let clientX, clientY;
+        if (event.touches && event.touches.length > 0) {
+          clientX = event.touches[0].clientX;
+          clientY = event.touches[0].clientY;
+        } else {
+          clientX = event.clientX;
+          clientY = event.clientY;
+        }
+
+        const x = (clientX - rect.left) * scaleX;
+        const y = (clientY - rect.top) * scaleY;
+
+        // Check if click is in the hit zone area (bottom portion of canvas)
+        if (y >= HIT_ZONE_Y - 20) {
+          // Determine which track was clicked
+          for (let i = 0; i < TRACK_COUNT; i++) {
+            const trackX = getTrackX(i);
+            if (x >= trackX && x <= trackX + TRACK_WIDTH) {
+              // Simulate key press for this track
+              handleKeyPress({ key: TRACK_KEYS[i] });
+              break;
+            }
+          }
+        }
+      }
+
+      // Initialize
+      function init() {
+        draw();
+        startBtn.addEventListener('click', startGame);
+        document.addEventListener('keydown', handleKeyPress);
+        canvas.addEventListener('click', handleCanvasClick);
+        canvas.addEventListener('touchstart', handleCanvasClick);
+      }
+
+      // Start when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
 </body>
 </html>
